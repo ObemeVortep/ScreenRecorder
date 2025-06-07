@@ -1,9 +1,13 @@
-#ifndef _IRECORDER_H
-#define _IRECORDER_H
+#ifndef IRECORDER_H
+#define IRECORDER_H
+
+#include "TYPES/QueueWrapper.h"
 
 // Abstract interface for all recorder modules (e.g., screen, audio, mic)
 class IRecorder {
 public:
+	IRecorder(QueueWrapper* pRecordedData) : pRecordedData(pRecordedData) {};
+
 	virtual ~IRecorder() = default;
 
 	// Initializes the recorder. Returns 0 on success.
@@ -14,6 +18,9 @@ public:
 
 	// Signals the recorder to stop gracefully
 	virtual void EndRequest() = 0;
+
+protected:
+	QueueWrapper* pRecordedData;
 };
 
-#endif // _IRECORDER_H
+#endif // IRECORDER_H

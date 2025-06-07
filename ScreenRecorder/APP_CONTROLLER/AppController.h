@@ -28,10 +28,12 @@ private:
 	);
 
 private:
+	// Shared RecordedData
+	QueueWrapper RecordedFrames;
+
 	// Recorder instances and their thread handles
 	ScreenRecorder ScreenRecorder;
 	std::jthread ScreenRecorderThread;
-
 };
 
 #endif // APP_CONTROLLER_H

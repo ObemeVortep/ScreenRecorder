@@ -4,8 +4,9 @@
 int main() {
 	AppController appController;
 	unsigned int uiThreads = appController.StartThreads();
-
 	if (uiThreads == 0x01) {
-		std::cout << "Gooood" << std::endl;
+		std::cout << "Only ScreenRecorder is inited." << std::endl;
 	}
+
+	while (true);
 }
