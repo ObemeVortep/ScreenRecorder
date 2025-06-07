@@ -1,10 +1,11 @@
-﻿#include <iostream>
-#include "main.h"
+﻿#include "main.h"
+#include <iostream>
 
-int main()
-{
-	ScreenRecorder ScreenRecorder;
-	if (ScreenRecorder.InitCapturingInterfaces() == 0) {
-		std::cout << "good" << std::endl;
+int main() {
+	AppController appController;
+	unsigned int uiThreads = appController.StartThreads();
+
+	if (uiThreads == 0x01) {
+		std::cout << "Gooood" << std::endl;
 	}
 }

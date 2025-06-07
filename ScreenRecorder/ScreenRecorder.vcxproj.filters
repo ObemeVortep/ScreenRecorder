@@ -25,6 +25,15 @@
     <Filter Include="Файлы заголовков\SCREEN_RECORDER">
       <UniqueIdentifier>{6db839e6-8cfc-4453-bb9a-5dab69628511}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\APP_CONTROLLER">
+      <UniqueIdentifier>{42c96c2e-cfe5-4b20-a053-6d0565c6de14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\APP_CONTROLLER">
+      <UniqueIdentifier>{fe92da22-9729-4c6b-be0b-e92f47bff54f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\RECORDER">
+      <UniqueIdentifier>{af6fa5ed-5c5d-438e-8510-e9bb6391d4f3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SCREEN_RECORDER\ScreenRecorder.cpp">
@@ -36,6 +45,12 @@
     <ClCompile Include="SCREEN_RECORDER\ScreenCapture.cpp">
       <Filter>Исходные файлы\SCREEN_RECORDER</Filter>
     </ClCompile>
+    <ClCompile Include="APP_CONTROLLER\AppController.cpp">
+      <Filter>Исходные файлы\APP_CONTROLLER</Filter>
+    </ClCompile>
+    <ClCompile Include="APP_CONTROLLER\AppThreads.cpp">
+      <Filter>Исходные файлы\APP_CONTROLLER</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SCREEN_RECORDER\ScreenRecorder.h">
@@ -43,6 +58,12 @@
     </ClInclude>
     <ClInclude Include="MAIN\main.h">
       <Filter>Файлы заголовков\MAIN</Filter>
+    </ClInclude>
+    <ClInclude Include="APP_CONTROLLER\AppController.h">
+      <Filter>Файлы заголовков\APP_CONTROLLER</Filter>
+    </ClInclude>
+    <ClInclude Include="RECORDER\IRecorder.h">
+      <Filter>Файлы заголовков\RECORDER</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,6 +1,8 @@
 #ifndef SCREEN_RECORDER_H
 #define SCREEN_RECORDER_H
 
+#include "RECORDER/IRecorder.h"
+
 #include <d3d11.h>     // We use DirectX 11 because the Desktop Duplication API is only available with it.
 #include <dxgi1_2.h>
 #include <vector>
@@ -9,7 +11,7 @@
 #pragma comment (lib, "d3d11.lib")
 
 // Class that captures the screen
-class ScreenRecorder {
+class ScreenRecorder : public IRecorder {
 public:
     // Constructor
     ScreenRecorder();
@@ -18,36 +20,30 @@ public:
     ~ScreenRecorder();
 
     // Initializes capturing interfaces (D3D11 + Duplication)
-    int InitCapturingInterfaces();
+    int Initialize() override;
 
     // Starts screen capturing
-    //  bool StartCapture();    TODO
+    void StartThread() override;
 
     // Ends screen capturing
-    //  bool EndCapture();      TODO
+    void EndRequest() override;
 
 private:
     // Functions
 
-    // Optimizes variables after successful InitCapturingInterfaces()
-    void OptimizeVarsAfterInit();
-
-    // Captures one frame and writes it into the buffer
-    //  bool GetFrame();        TODO
+    // Captures one frame and writes it into vLastScreen
+    bool GetFrame(std::vector<BYTE>& vFrameData);
 
 private:
     // Variables
 
     // D3D11 interfaces
-    ID3D11Device* pDevice;
+    ID3D11Device*           pDevice;
     IDXGIOutputDuplication* pDeskDupl;
 
     // Screen dimensions
-    int                      iWidth;
-    int                      iHeight;
-
-    // Temporary buffer where the captured screenshot is stored after GetFrame()
-    std::vector<BYTE>        vLastScreen;
+    int                     iWidth;
+    int                     iHeight;
 };
 
 #endif // SCREEN_RECORDER_H

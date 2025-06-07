@@ -19,12 +19,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="APP_CONTROLLER\AppController.cpp" />
+    <ClCompile Include="APP_CONTROLLER\AppThreads.cpp" />
     <ClCompile Include="MAIN\main.cpp" />
     <ClCompile Include="SCREEN_RECORDER\ScreenCapture.cpp" />
     <ClCompile Include="SCREEN_RECORDER\ScreenRecorder.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="APP_CONTROLLER\AppController.h" />
     <ClInclude Include="MAIN\main.h" />
+    <ClInclude Include="RECORDER\IRecorder.h" />
     <ClInclude Include="SCREEN_RECORDER\ScreenRecorder.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -119,6 +123,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -133,6 +138,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

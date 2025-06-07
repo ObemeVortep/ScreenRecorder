@@ -23,7 +23,7 @@ ScreenRecorder::~ScreenRecorder() {
 }
 
 // Initializes the capturing interfaces
-int ScreenRecorder::InitCapturingInterfaces() {
+int ScreenRecorder::Initialize() {
 	HRESULT hr = S_OK;
 
 	// Try to create a D3D11 device
@@ -31,7 +31,7 @@ int ScreenRecorder::InitCapturingInterfaces() {
 		nullptr,								// Use the default adapter
 		D3D_DRIVER_TYPE_HARDWARE,				// Preferred driver type
 		nullptr,								// No software device
-		0,										// No creation flags
+		D3D11_CREATE_DEVICE_SINGLETHREADED,		// For better performance
 		nullptr, 0,								// Default feature levels
 		D3D11_SDK_VERSION,						// Must be D3D11_SDK_VERSION
 		&pDevice,
@@ -110,12 +110,5 @@ int ScreenRecorder::InitCapturingInterfaces() {
 		return -8;
 	}
 
-	OptimizeVarsAfterInit();
-
 	return 0;
-}
-
-// Optimizes internal variables after successful initialization
-void ScreenRecorder::OptimizeVarsAfterInit() {
-	vLastScreen.resize(iWidth * iHeight);
 }
