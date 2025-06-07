@@ -8,4 +8,5 @@ int main() {
 	if (uiThreads == 0x01) {
 		std::cout << "Gooood" << std::endl;
 	}
+	while (true);
 }

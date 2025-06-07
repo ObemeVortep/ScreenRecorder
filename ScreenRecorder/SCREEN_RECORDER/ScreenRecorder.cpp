@@ -6,20 +6,21 @@ using Microsoft::WRL::ComPtr;
 
 // Constructor – initializes all member variables
 ScreenRecorder::ScreenRecorder()
-	: pDevice(nullptr), pDeskDupl(nullptr), iWidth(0), iHeight(0)
-{
-}
+	: pDevice(nullptr), pContext(nullptr), pDeskDupl(nullptr), iWidth(0), iHeight(0)
+		{ }
 
 // Destructor – releases COM interfaces in correct order
 ScreenRecorder::~ScreenRecorder() {
-	// Release order: pDeskDupl -> pDevice
-
-	if (pDeskDupl) {
-		pDeskDupl->Release();
-	}
-	if (pDevice) {
-		pDevice->Release();
-	}
+	// Release order: pDeskDupl -> pContext -> pDevice
+	auto d3d11Release = [](auto& pD3D11) {
+		if (pD3D11) {
+			pD3D11->Release(); 
+			pD3D11 = nullptr;
+		}
+	};
+	d3d11Release(pDeskDupl);
+	d3d11Release(pContext);
+	d3d11Release(pDevice);
 }
 
 // Initializes the capturing interfaces
@@ -36,7 +37,7 @@ int ScreenRecorder::Initialize() {
 		D3D11_SDK_VERSION,						// Must be D3D11_SDK_VERSION
 		&pDevice,
 		nullptr,								// We don't need the feature level
-		nullptr									// We don't need the device context
+		&pContext								
 	);
 	if (FAILED(hr)) {
 		// Failed to create D3D11 device

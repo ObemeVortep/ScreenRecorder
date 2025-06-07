@@ -39,6 +39,7 @@ private:
 
     // D3D11 interfaces
     ID3D11Device*           pDevice;
+    ID3D11DeviceContext*    pContext;
     IDXGIOutputDuplication* pDeskDupl;
 
     // Screen dimensions
