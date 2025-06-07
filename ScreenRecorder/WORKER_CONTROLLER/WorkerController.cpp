@@ -1,11 +1,11 @@
-#include "APP_CONTROLLER/AppController.h"
+#include "WORKER_CONTROLLER/WorkerController.h"
 
 // Constructor
-AppController::AppController() 
+WorkerController::WorkerController() 
 	: RecordedFrames(), ScreenRecorder(&RecordedFrames),					// Recorders
 	  ProceededFrames(), FrameHandler(&ProceededFrames, &RecordedFrames)	// Handlers
 		{ }
 
 // Destructor
-AppController::~AppController() {
+WorkerController::~WorkerController() {
 }

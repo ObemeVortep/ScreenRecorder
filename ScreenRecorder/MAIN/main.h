@@ -1,6 +1,6 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include "APP_CONTROLLER/AppController.h"
+#include "WORKER_CONTROLLER/WorkerController.h"
 
 #endif // MAIN_H

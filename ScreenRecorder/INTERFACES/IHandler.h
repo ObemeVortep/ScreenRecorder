@@ -1,5 +1,5 @@
-#ifndef _IHANDLER_H
-#define _IHANDLER_H
+#ifndef IHANDLER_H
+#define IHANDLER_H
 
 #include "IRecorder.h"
 
@@ -15,7 +15,8 @@ public:
 	// Destructor
 	virtual ~IHandler() = default;
 private:
+	// ProceededData after processing RecorderData
 	QueueWrapper* pProceededData;
 };
 
-#endif // _IHANDLER_H
+#endif // IHANDLER_H

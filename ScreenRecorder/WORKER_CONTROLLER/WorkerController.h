@@ -1,5 +1,5 @@
-#ifndef APP_CONTROLLER_H
-#define APP_CONTROLLER_H
+#ifndef WORKER_CONTROLLER_H
+#define WORKER_CONTROLLER_H
 
 #include "SCREEN_RECORDER/ScreenRecorder.h"		// Provides the ScreenRecorder implementation
 #include "FRAME_HANDLER/FrameHandler.h"			// Provides the FrameHandler implementation
@@ -7,13 +7,13 @@
 #include <thread>
 #include <atomic>
 
-class AppController {
+class WorkerController {
 public:
 	// Constructor
-	AppController();
+	WorkerController();
 
 	// Destructor
-	~AppController();
+	~WorkerController();
 
 	// Starts all recorder threads and waits for their initialization
 	unsigned int StartThreads();
@@ -46,4 +46,4 @@ private:
 
 };
 
-#endif // APP_CONTROLLER_H
+#endif // WORKER_CONTROLLER_H

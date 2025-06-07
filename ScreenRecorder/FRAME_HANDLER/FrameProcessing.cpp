@@ -1,12 +1,12 @@
 #include "FrameHandler.h"
-#include <iostream>
 
 // Start thread, that will process the frame queue
 void FrameHandler::StartThread() {
-	std::vector<unsigned char> vTemp(100);
-	pRecordedData->WaitFrontAndPop(vTemp);
+	// Define a vector for processed frames
+	std::vector<unsigned char> vTemp;
 
-	std::cout << std::dec << vTemp.size() << std::endl;
+	// Process first frame
+	pRecordedData->WaitFrontAndPop(vTemp);
 
 	return;
 }

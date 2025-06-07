@@ -1,8 +1,8 @@
-#include "APP_CONTROLLER/AppController.h"
+#include "WORKER_CONTROLLER/WorkerController.h"
 
 #include <atomic>
 
-unsigned int AppController::TryToStartThread(std::jthread& NewThread, IRecorder* pWorker) {
+unsigned int WorkerController::TryToStartThread(std::jthread& NewThread, IRecorder* pWorker) {
 	// Current flag. After every call must be x2
 	static unsigned int uiCurrentFlag = 0;
 	if (uiCurrentFlag == 0) {
@@ -18,7 +18,7 @@ unsigned int AppController::TryToStartThread(std::jthread& NewThread, IRecorder*
 
 	// Make new thread
 	NewThread = std::jthread(
-		&AppController::StartThread,
+		&WorkerController::StartThread,
 		this,
 		pWorker,
 		std::ref(isInitOver),
@@ -40,7 +40,7 @@ unsigned int AppController::TryToStartThread(std::jthread& NewThread, IRecorder*
 }
 
 // Launches all recorder threads and waits for their initialization to complete
-unsigned int AppController::StartThreads() {
+unsigned int WorkerController::StartThreads() {
 	// Bitmask flag: 0x01 = ScreenRecorder, 0x02 = FrameHandler initialized
 	unsigned int uiInitedThreads = 0;
 
@@ -54,7 +54,7 @@ unsigned int AppController::StartThreads() {
 
 
 // Initializes and starts a separate thread
-void AppController::StartThread(
+void WorkerController::StartThread(
 	IRecorder* pWorker,
 	std::atomic<bool>& isInitOver,
 	std::atomic<bool>& isInitSuccessful
