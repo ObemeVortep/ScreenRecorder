@@ -28,11 +28,10 @@ private:
 	);
 
 private:
-	// Recorder instances
+	// Recorder instances and their thread handles
 	ScreenRecorder ScreenRecorder;
-
-	// Thread handles
 	std::jthread ScreenRecorderThread;
+
 };
 
 #endif // APP_CONTROLLER_H

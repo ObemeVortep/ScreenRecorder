@@ -2,9 +2,9 @@
 
 #include <atomic>
 
-// Starts all threads and waits for their initialization
+// Launches all recorder threads and waits for their initialization to complete
 unsigned int AppController::StartThreads() {
-	// Start the ScreenRecorder thread
+	// Start the ScreenRecorder thread with status flags for initialization tracking
 	std::atomic<bool> isScreenRecorderInitOver = false;
 	std::atomic<bool> isScreenRecorderInitSuccessful = false;
 	ScreenRecorderThread = std::jthread(
@@ -15,21 +15,28 @@ unsigned int AppController::StartThreads() {
 		std::ref(isScreenRecorderInitSuccessful)
 	);
 
-	// Wait until the ScreenRecorder thread finishes initialization
-	while (!isScreenRecorderInitOver.load()) {
-		std::this_thread::sleep_for(std::chrono::milliseconds(1));
-	}
+	// Wait until the ScreenRecorder thread has finished its initialization phase
+	auto waitForInit = [](std::atomic<bool>& isInitOver) {
+		while (!isInitOver.load()) {
+			std::this_thread::sleep_for(std::chrono::milliseconds(1));
+		}
+		};
+	waitForInit(isScreenRecorderInitOver);
 
-	// 0x01 -> ScreenRecorder flag
+	// Bitmask flag: 0x01 = ScreenRecorder initialized
 	unsigned int uiInitedThreads = 0;
 
-	// Set flag if ScreenRecorder was successfully initialized
-	if (isScreenRecorderInitSuccessful.load()) {
-		uiInitedThreads |= 0x01;
-	}
+	// Set the corresponding flag if the ScreenRecorder was successfully initialized
+	auto checkInitResult = [&uiInitedThreads](std::atomic<bool>& isInitSuccessful, unsigned int flag) {
+		if (isInitSuccessful.load()) {
+			uiInitedThreads |= flag;
+		}
+		};
+	checkInitResult(isScreenRecorderInitSuccessful, 0x01);
 
 	return uiInitedThreads;
 }
+
 
 // Initializes and starts a recorder in a separate thread
 void AppController::StartRecorderThread(
