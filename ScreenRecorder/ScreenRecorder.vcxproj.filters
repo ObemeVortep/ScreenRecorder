@@ -31,8 +31,11 @@
     <Filter Include="Файлы заголовков\APP_CONTROLLER">
       <UniqueIdentifier>{fe92da22-9729-4c6b-be0b-e92f47bff54f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Файлы заголовков\RECORDER">
+    <Filter Include="Файлы заголовков\INTERFACES">
       <UniqueIdentifier>{af6fa5ed-5c5d-438e-8510-e9bb6391d4f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\TYPES">
+      <UniqueIdentifier>{95769e09-9bfb-42e1-834f-f7ad33ebf25f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -62,8 +65,11 @@
     <ClInclude Include="APP_CONTROLLER\AppController.h">
       <Filter>Файлы заголовков\APP_CONTROLLER</Filter>
     </ClInclude>
-    <ClInclude Include="RECORDER\IRecorder.h">
-      <Filter>Файлы заголовков\RECORDER</Filter>
+    <ClInclude Include="INTERFACES\IRecorder.h">
+      <Filter>Файлы заголовков\INTERFACES</Filter>
+    </ClInclude>
+    <ClInclude Include="TYPES\QueueWrapper.h">
+      <Filter>Файлы заголовков\TYPES</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

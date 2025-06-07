@@ -27,9 +27,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="APP_CONTROLLER\AppController.h" />
+    <ClInclude Include="INTERFACES\IRecorder.h" />
     <ClInclude Include="MAIN\main.h" />
-    <ClInclude Include="RECORDER\IRecorder.h" />
     <ClInclude Include="SCREEN_RECORDER\ScreenRecorder.h" />
+    <ClInclude Include="TYPES\QueueWrapper.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

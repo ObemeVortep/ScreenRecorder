@@ -5,7 +5,7 @@
 using Microsoft::WRL::ComPtr;
 
 // Constructor – initializes all member variables
-ScreenRecorder::ScreenRecorder(RecordedData* pRecordedData)
+ScreenRecorder::ScreenRecorder(QueueWrapper* pRecordedData)
 	: pDevice(nullptr), pContext(nullptr), pDeskDupl(nullptr), iWidth(0), iHeight(0),
 		IRecorder(pRecordedData)
 			{ }
