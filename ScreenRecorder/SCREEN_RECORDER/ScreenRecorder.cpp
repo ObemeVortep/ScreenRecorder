@@ -5,9 +5,10 @@
 using Microsoft::WRL::ComPtr;
 
 // Constructor – initializes all member variables
-ScreenRecorder::ScreenRecorder()
-	: pDevice(nullptr), pContext(nullptr), pDeskDupl(nullptr), iWidth(0), iHeight(0)
-		{ }
+ScreenRecorder::ScreenRecorder(RecordedData* pRecordedData)
+	: pDevice(nullptr), pContext(nullptr), pDeskDupl(nullptr), iWidth(0), iHeight(0),
+		IRecorder(pRecordedData)
+			{ }
 
 // Destructor – releases COM interfaces in correct order
 ScreenRecorder::~ScreenRecorder() {

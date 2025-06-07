@@ -1,5 +1,6 @@
 #include "ScreenRecorder.h"
 #include <fstream>
+#include <iostream>
 
 // For ComPtr smart pointer wrapper
 #include <wrl/client.h>
@@ -11,7 +12,9 @@ void ScreenRecorder::StartThread() {
 	std::vector<BYTE> vFrameData(iWidth * iHeight * 4);
 
 	// Attempt to capture a single screenshot
-	GetFrame(vFrameData);
+	if (GetFrame(vFrameData)) {
+		pRecordedData->Push(vFrameData);
+	}
 
 	return;
 }

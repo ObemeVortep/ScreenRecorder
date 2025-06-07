@@ -14,7 +14,7 @@
 class ScreenRecorder : public IRecorder {
 public:
     // Constructor
-    ScreenRecorder();
+    ScreenRecorder(RecordedData* pRecordedData);
 
     // Destructor
     ~ScreenRecorder();

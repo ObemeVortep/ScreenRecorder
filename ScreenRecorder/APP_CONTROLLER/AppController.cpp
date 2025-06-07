@@ -1,9 +1,9 @@
 #include "APP_CONTROLLER/AppController.h"
 
 // Constructor
-AppController::AppController()
-{
-}
+AppController::AppController() 
+	: RecordedFrames(), ScreenRecorder(&RecordedFrames)
+		{ }
 
 // Destructor
 AppController::~AppController() {
