@@ -2,7 +2,8 @@
 
 // Constructor
 AppController::AppController() 
-	: RecordedFrames(), ScreenRecorder(&RecordedFrames)
+	: RecordedFrames(), ScreenRecorder(&RecordedFrames),					// Recorders
+	  ProceededFrames(), FrameHandler(&ProceededFrames, &RecordedFrames)	// Handlers
 		{ }
 
 // Destructor

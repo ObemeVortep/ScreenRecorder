@@ -37,6 +37,12 @@
     <Filter Include="Файлы заголовков\TYPES">
       <UniqueIdentifier>{95769e09-9bfb-42e1-834f-f7ad33ebf25f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\FRAME_HANDLER">
+      <UniqueIdentifier>{67d76ad6-582e-4055-8557-e6afdc441999}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\FRAME_HANDLER">
+      <UniqueIdentifier>{2cec6ba2-c07b-4bd7-a03e-313a6c9269b5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SCREEN_RECORDER\ScreenRecorder.cpp">
@@ -54,6 +60,12 @@
     <ClCompile Include="APP_CONTROLLER\AppThreads.cpp">
       <Filter>Исходные файлы\APP_CONTROLLER</Filter>
     </ClCompile>
+    <ClCompile Include="FRAME_HANDLER\FrameHandler.cpp">
+      <Filter>Исходные файлы\FRAME_HANDLER</Filter>
+    </ClCompile>
+    <ClCompile Include="FRAME_HANDLER\FrameProcessing.cpp">
+      <Filter>Исходные файлы\FRAME_HANDLER</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SCREEN_RECORDER\ScreenRecorder.h">
@@ -70,6 +82,12 @@
     </ClInclude>
     <ClInclude Include="TYPES\QueueWrapper.h">
       <Filter>Файлы заголовков\TYPES</Filter>
+    </ClInclude>
+    <ClInclude Include="INTERFACES\IHandler.h">
+      <Filter>Файлы заголовков\INTERFACES</Filter>
+    </ClInclude>
+    <ClInclude Include="FRAME_HANDLER\FrameHandler.h">
+      <Filter>Файлы заголовков\FRAME_HANDLER</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

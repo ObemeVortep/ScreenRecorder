@@ -3,7 +3,7 @@
 
 #include "TYPES/QueueWrapper.h"
 
-// Abstract interface for all recorder modules (e.g., screen, audio, mic)
+// Abstract interface for all recorder modules (e.g., screen, audio, mic) and handlers
 class IRecorder {
 public:
 	IRecorder(QueueWrapper* pRecordedData) : pRecordedData(pRecordedData) {};

@@ -21,12 +21,16 @@
   <ItemGroup>
     <ClCompile Include="APP_CONTROLLER\AppController.cpp" />
     <ClCompile Include="APP_CONTROLLER\AppThreads.cpp" />
+    <ClCompile Include="FRAME_HANDLER\FrameHandler.cpp" />
+    <ClCompile Include="FRAME_HANDLER\FrameProcessing.cpp" />
     <ClCompile Include="MAIN\main.cpp" />
     <ClCompile Include="SCREEN_RECORDER\ScreenCapture.cpp" />
     <ClCompile Include="SCREEN_RECORDER\ScreenRecorder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="APP_CONTROLLER\AppController.h" />
+    <ClInclude Include="FRAME_HANDLER\FrameHandler.h" />
+    <ClInclude Include="INTERFACES\IHandler.h" />
     <ClInclude Include="INTERFACES\IRecorder.h" />
     <ClInclude Include="MAIN\main.h" />
     <ClInclude Include="SCREEN_RECORDER\ScreenRecorder.h" />

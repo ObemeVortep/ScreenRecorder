@@ -17,21 +17,15 @@ public:
 		}
 	}
 
+	// Waits until the queue is non-empty (used by consumer threads).
 	// Retrieves and removes the front element from the queue.
 	// The caller must ensure the queue is not empty before calling.
-	inline void FrontAndPop(std::vector<unsigned char>& vDataDst) {
-		{
-			std::lock_guard<std::mutex> DataQueueGuard(QueueMutex);
-			vDataDst = std::move(DataQueue.front());
-			DataQueue.pop();
-		}
-	}
-
-	// Waits until the queue is non-empty (used by consumer threads).
-	inline void Wait() {
+	inline void WaitFrontAndPop(std::vector<unsigned char>& vDataDst) {
 		{
 			std::unique_lock<std::mutex> ConditionGuard(QueueMutex);
 			QueueCondition.wait(ConditionGuard, [this]() { return !DataQueue.empty(); });
+			vDataDst = std::move(DataQueue.front());
+			DataQueue.pop();
 		}
 	}
 
