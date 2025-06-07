@@ -1,7 +1,7 @@
 #ifndef SCREEN_RECORDER_H
 #define SCREEN_RECORDER_H
 
-#include "RECORDER/IRecorder.h"
+#include "INTERFACES/IRecorder.h"
 
 #include <d3d11.h>     // We use DirectX 11 because the Desktop Duplication API is only available with it.
 #include <dxgi1_2.h>
@@ -14,7 +14,7 @@
 class ScreenRecorder : public IRecorder {
 public:
     // Constructor
-    ScreenRecorder(RecordedData* pRecordedData);
+    ScreenRecorder(QueueWrapper* pRecordedData);
 
     // Destructor
     ~ScreenRecorder();

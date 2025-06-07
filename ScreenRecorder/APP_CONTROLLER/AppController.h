@@ -29,7 +29,7 @@ private:
 
 private:
 	// Shared RecordedData
-	RecordedData RecordedFrames;
+	QueueWrapper RecordedFrames;
 
 	// Recorder instances and their thread handles
 	ScreenRecorder ScreenRecorder;

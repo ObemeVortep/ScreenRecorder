@@ -27,8 +27,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="APP_CONTROLLER\AppController.h" />
+    <ClInclude Include="INTERFACES\IRecorder.h" />
     <ClInclude Include="MAIN\main.h" />
-    <ClInclude Include="RECORDER\IRecorder.h" />
     <ClInclude Include="SCREEN_RECORDER\ScreenRecorder.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

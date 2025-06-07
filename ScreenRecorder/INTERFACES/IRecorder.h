@@ -1,12 +1,12 @@
-#ifndef _IRECORDER_H
-#define _IRECORDER_H
+#ifndef IRECORDER_H
+#define IRECORDER_H
 
 #include <queue>
 #include <condition_variable>
 #include <mutex>
 
 // Shared data buffer for all IRecorder implementations (accessed via reference).
-class RecordedData {
+class QueueWrapper {
 public:
 	// Adds a new data block to the queue and notifies one waiting thread.
 	inline void Push(std::vector<unsigned char> vDataSrc) {
@@ -49,7 +49,7 @@ private:
 // Abstract interface for all recorder modules (e.g., screen, audio, mic)
 class IRecorder {
 public:
-	IRecorder(RecordedData* pRecordedData) : pRecordedData(pRecordedData) {};
+	IRecorder(QueueWrapper* pRecordedData) : pRecordedData(pRecordedData) {};
 
 	virtual ~IRecorder() = default;
 
@@ -63,7 +63,7 @@ public:
 	virtual void EndRequest() = 0;
 
 protected:
-	RecordedData* pRecordedData;
+	QueueWrapper* pRecordedData;
 };
 
-#endif // _IRECORDER_H
+#endif // IRECORDER_H
