@@ -12,7 +12,7 @@ void ScreenRecorder::StartThread() {
 	std::vector<BYTE> vFrameData(iWidth * iHeight * 4);
 
 	// Attempt to capture a single screenshot
-	if (GetFrame(vFrameData)) {
+	if (GetFrame(vFrameData) && GetFrame(vFrameData)) {
 		pRecordedData->Push(vFrameData);
 	}
 

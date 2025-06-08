@@ -29,14 +29,6 @@ public:
 		}
 	}
 
-	// Waits until the queue is non-empty (used by consumer threads).
-	inline void Wait() {
-		{
-			std::unique_lock<std::mutex> ConditionGuard(QueueMutex);
-			QueueCondition.wait(ConditionGuard, [this]() { return !DataQueue.empty(); });
-		}
-	}
-
 private:
 	// Thread-safe queue of recorded data blocks (e.g., frames)
 	std::queue<std::vector<unsigned char>> DataQueue;
