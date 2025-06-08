@@ -1,9 +1,10 @@
 #include "FrameHandler.h"
 
 // Constructor
-FrameHandler::FrameHandler(QueueWrapper* pProceededData, QueueWrapper* pRecordedData) 
-	: IHandler(pProceededData, pRecordedData)
-		{ }
+FrameHandler::FrameHandler(SharedQueue<std::vector<unsigned char>>* pProceededData, SharedQueue<std::vector<unsigned char>>* pRecordedData)
+	: iWidth(WIDTH), iHeight(HEIGHT),
+		IHandler(pProceededData, pRecordedData)
+			{ }
 
 // Destructor
 FrameHandler::~FrameHandler() {

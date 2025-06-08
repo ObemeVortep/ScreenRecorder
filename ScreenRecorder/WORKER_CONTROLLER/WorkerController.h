@@ -33,8 +33,8 @@ private:
 
 private:
 	// Shared RecordedData and ProceededData
-	QueueWrapper RecordedFrames;
-	QueueWrapper ProceededFrames;
+	SharedQueue<std::vector<unsigned char>> RecordedFrames;
+	SharedQueue<std::vector<unsigned char>> ProceededFrames;
 
 	// Recorder instances with their thread handles
 	ScreenRecorder ScreenRecorder;

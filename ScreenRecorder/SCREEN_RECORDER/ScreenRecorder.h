@@ -10,11 +10,13 @@
 // We need this library to use D3D11 functions
 #pragma comment (lib, "d3d11.lib")
 
+#define FRAMES_PER_SECOND   60      // Frames per second, that we recording
+
 // Class that captures the screen
 class ScreenRecorder : public IRecorder {
 public:
     // Constructor
-    ScreenRecorder(QueueWrapper* pRecordedData);
+    ScreenRecorder(SharedQueue<std::vector<unsigned char>>* pRecordedData);
 
     // Destructor
     ~ScreenRecorder();

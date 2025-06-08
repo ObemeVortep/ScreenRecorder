@@ -2,7 +2,7 @@
 #define IHANDLER_H
 
 #include "IWorker.h"
-#include "TYPES/QueueWrapper.h"
+#include "TYPES/SharedQueue.h"
 
 // Interface IHandler for handlers
 class IHandler : public IWorker {
@@ -11,15 +11,15 @@ public:
 	virtual ~IHandler() = default;
 protected:
 	// Constructor
-	IHandler(QueueWrapper* pProceededData, QueueWrapper* pRecordedData)
+	IHandler(SharedQueue<std::vector<unsigned char>>* pProceededData, SharedQueue<std::vector<unsigned char>>* pRecordedData)
 		: pProceededData(pProceededData), pRecordedData(pRecordedData)
 			{ }
 
 	// RecordedData, that we receive from Recorder
-	QueueWrapper* pRecordedData;
+	SharedQueue<std::vector<unsigned char>>* pRecordedData;
 
 	// ProceededData after processing RecorderData
-	QueueWrapper* pProceededData;
+	SharedQueue<std::vector<unsigned char>>* pProceededData;
 };
 
 #endif // IHANDLER_H

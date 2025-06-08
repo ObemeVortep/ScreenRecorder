@@ -8,5 +8,7 @@ int main() {
 		std::cout << "All threads are inited." << std::endl;
 	}
 
-	while (true);
+	while (true) {
+		std::this_thread::sleep_for(std::chrono::seconds(1000));
+	}
 }

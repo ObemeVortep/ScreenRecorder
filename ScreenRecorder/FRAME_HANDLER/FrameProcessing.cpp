@@ -2,23 +2,27 @@
 
 #include "libjpeg-turbo/jpeglib.h"		// For using jpeglib-turbo functions
 
-#define WIDTH	1920		// We will get it dynamic in future
-#define HEIGHT	1080		// We will get it dynamic in future
-
 // Start thread, that will process the frame queue
 void FrameHandler::StartThread() {
 	// Define a vector for raw and jpeg frames
 	std::vector<unsigned char> vRawFrame;
 	std::vector<unsigned char> vJpegFrame;
 
-	// Wait for new raw frame
-	pRecordedData->WaitFrontAndPop(vRawFrame);
+	// Infinity loop of processing frames
+	// for debugging
+	int i = 0;
+	while (true) {
+		// Wait for new raw frame
+		pRecordedData->WaitFrontAndPop(vRawFrame);
 
-	// Convert frame to JPEG
-	ConvertFrame(vRawFrame, vJpegFrame);
+		// Convert frame to JPEG
+		ConvertFrame(vRawFrame, vJpegFrame);
 
-	// Push it in vProceededQueue
-	pProceededData->Push(vJpegFrame);
+		// Push it in vProceededQueue
+		pProceededData->Push(vJpegFrame);
+
+		i++;
+	}
 
 	return;
 }
@@ -34,7 +38,7 @@ void FrameHandler::ConvertFrame(const std::vector<unsigned char>& vRawFrame, std
 	struct jpeg_error_mgr		jerr;
 
 	// Another stuff
-	JSAMPROW	   pRow[1];	 /* for jpeg_write_scanlines() */
+	JSAMPROW       pRow[1];	 /* for jpeg_write_scanlines() */
 	unsigned char* pJpegBuffer = NULL;	/* can be optimized for std::vector in future */
 	unsigned long  szBuffer = 0;
 
@@ -47,8 +51,8 @@ void FrameHandler::ConvertFrame(const std::vector<unsigned char>& vRawFrame, std
 	jpeg_mem_dest(&cinfo, &pJpegBuffer, &szBuffer);	// can be optimized for std::vector in future
 
 	/* Step 3: set parameters for compression */
-	cinfo.image_width = WIDTH;
-	cinfo.image_height = HEIGHT;
+	cinfo.image_width = iWidth;
+	cinfo.image_height = iHeight;
 	cinfo.input_components = 4;
 	cinfo.in_color_space = JCS_EXT_BGRA;	/* we need at list this before calling jpeg_set_defaults() */
 	cinfo.data_precision = 8;

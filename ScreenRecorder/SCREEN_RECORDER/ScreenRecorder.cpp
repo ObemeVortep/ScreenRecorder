@@ -5,7 +5,7 @@
 using Microsoft::WRL::ComPtr;
 
 // Constructor – initializes all member variables
-ScreenRecorder::ScreenRecorder(QueueWrapper* pRecordedData)
+ScreenRecorder::ScreenRecorder(SharedQueue<std::vector<unsigned char>>* pRecordedData)
 	: pDevice(nullptr), pContext(nullptr), pDeskDupl(nullptr), iWidth(0), iHeight(0),
 		IRecorder(pRecordedData)
 			{ }

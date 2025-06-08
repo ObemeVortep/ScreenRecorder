@@ -43,6 +43,12 @@
     <Filter Include="Исходные файлы\WORKER_CONTROLLER">
       <UniqueIdentifier>{42c96c2e-cfe5-4b20-a053-6d0565c6de14}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\VIDEO_CREATOR">
+      <UniqueIdentifier>{9dfb15d1-cac3-4cfc-9c09-408aa0d35d34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\VIDEO_CREATOR">
+      <UniqueIdentifier>{9ab605c3-c49a-4c3a-b85e-d3afc2d79908}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SCREEN_RECORDER\ScreenRecorder.cpp">
@@ -66,6 +72,9 @@
     <ClCompile Include="WORKER_CONTROLLER\WorkerController.cpp">
       <Filter>Исходные файлы\WORKER_CONTROLLER</Filter>
     </ClCompile>
+    <ClCompile Include="VIDEO_CREATOR\VideoCreator.cpp">
+      <Filter>Исходные файлы\VIDEO_CREATOR</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SCREEN_RECORDER\ScreenRecorder.h">
@@ -76,9 +85,6 @@
     </ClInclude>
     <ClInclude Include="INTERFACES\IRecorder.h">
       <Filter>Файлы заголовков\INTERFACES</Filter>
-    </ClInclude>
-    <ClInclude Include="TYPES\QueueWrapper.h">
-      <Filter>Файлы заголовков\TYPES</Filter>
     </ClInclude>
     <ClInclude Include="INTERFACES\IHandler.h">
       <Filter>Файлы заголовков\INTERFACES</Filter>
@@ -91,6 +97,12 @@
     </ClInclude>
     <ClInclude Include="INTERFACES\IWorker.h">
       <Filter>Файлы заголовков\INTERFACES</Filter>
+    </ClInclude>
+    <ClInclude Include="VIDEO_CREATOR\VideoCreator.h">
+      <Filter>Файлы заголовков\VIDEO_CREATOR</Filter>
+    </ClInclude>
+    <ClInclude Include="TYPES\SharedQueue.h">
+      <Filter>Файлы заголовков\TYPES</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,6 +1,4 @@
 #include "ScreenRecorder.h"
-#include <fstream>
-#include <iostream>
 
 // For ComPtr smart pointer wrapper
 #include <wrl/client.h>
@@ -11,9 +9,13 @@ void ScreenRecorder::StartThread() {
 	// Create a buffer matching the screen size
 	std::vector<BYTE> vFrameData(iWidth * iHeight * 4);
 
-	// Attempt to capture a single screenshot
-	if (GetFrame(vFrameData) && GetFrame(vFrameData)) {
-		pRecordedData->Push(vFrameData);
+	// Make 1FPS stream
+	while (true) {
+		// Attempt to capture a single screenshot
+		if (GetFrame(vFrameData)) {
+			pRecordedData->Push(vFrameData);
+		}
+		std::this_thread::sleep_for(std::chrono::milliseconds(1000 / FRAMES_PER_SECOND));
 	}
 
 	return;
@@ -31,7 +33,7 @@ bool ScreenRecorder::GetFrame(std::vector<BYTE>& vFrameData) {
 	// Attempt to acquire the next frame
 	ComPtr<IDXGIResource> DxgiRes;
 	DXGI_OUTDUPL_FRAME_INFO FrameInfo;
-	hr = pDeskDupl->AcquireNextFrame(100, &FrameInfo, DxgiRes.GetAddressOf());
+	hr = pDeskDupl->AcquireNextFrame(0, &FrameInfo, DxgiRes.GetAddressOf());
 	if (FAILED(hr)) {
 		return false;
 	}
