@@ -22,11 +22,11 @@ private:
 	// Internal helper functions
 
 	// Tries to start the thread
-	unsigned int TryToStartThread(std::jthread& NewThread, IRecorder* pWorker);
+	unsigned int TryToStartThread(std::jthread& NewThread, IWorker* pWorker);
 
 	// Initializes and starts a recorder in a separate thread
 	void StartThread(
-		IRecorder* pWorker,
+		IWorker* pWorker,
 		std::atomic<bool>& isInitOver,
 		std::atomic<bool>& isInitSuccessful
 	);

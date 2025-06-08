@@ -2,7 +2,7 @@
 
 #include <atomic>
 
-unsigned int WorkerController::TryToStartThread(std::jthread& NewThread, IRecorder* pWorker) {
+unsigned int WorkerController::TryToStartThread(std::jthread& NewThread, IWorker* pWorker) {
 	// Current flag. After every call must be x2
 	static unsigned int uiCurrentFlag = 0;
 	if (uiCurrentFlag == 0) {
@@ -55,7 +55,7 @@ unsigned int WorkerController::StartThreads() {
 
 // Initializes and starts a separate thread
 void WorkerController::StartThread(
-	IRecorder* pWorker,
+	IWorker* pWorker,
 	std::atomic<bool>& isInitOver,
 	std::atomic<bool>& isInitSuccessful
 ) {

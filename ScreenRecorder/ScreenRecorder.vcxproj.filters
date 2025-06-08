@@ -25,12 +25,6 @@
     <Filter Include="Файлы заголовков\SCREEN_RECORDER">
       <UniqueIdentifier>{6db839e6-8cfc-4453-bb9a-5dab69628511}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Исходные файлы\APP_CONTROLLER">
-      <UniqueIdentifier>{42c96c2e-cfe5-4b20-a053-6d0565c6de14}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Файлы заголовков\APP_CONTROLLER">
-      <UniqueIdentifier>{fe92da22-9729-4c6b-be0b-e92f47bff54f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Файлы заголовков\INTERFACES">
       <UniqueIdentifier>{af6fa5ed-5c5d-438e-8510-e9bb6391d4f3}</UniqueIdentifier>
     </Filter>
@@ -43,6 +37,12 @@
     <Filter Include="Файлы заголовков\FRAME_HANDLER">
       <UniqueIdentifier>{2cec6ba2-c07b-4bd7-a03e-313a6c9269b5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\WORKER_CONTROLLER">
+      <UniqueIdentifier>{fe92da22-9729-4c6b-be0b-e92f47bff54f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\WORKER_CONTROLLER">
+      <UniqueIdentifier>{42c96c2e-cfe5-4b20-a053-6d0565c6de14}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SCREEN_RECORDER\ScreenRecorder.cpp">
@@ -54,17 +54,17 @@
     <ClCompile Include="SCREEN_RECORDER\ScreenCapture.cpp">
       <Filter>Исходные файлы\SCREEN_RECORDER</Filter>
     </ClCompile>
-    <ClCompile Include="APP_CONTROLLER\AppController.cpp">
-      <Filter>Исходные файлы\APP_CONTROLLER</Filter>
-    </ClCompile>
-    <ClCompile Include="APP_CONTROLLER\AppThreads.cpp">
-      <Filter>Исходные файлы\APP_CONTROLLER</Filter>
-    </ClCompile>
     <ClCompile Include="FRAME_HANDLER\FrameHandler.cpp">
       <Filter>Исходные файлы\FRAME_HANDLER</Filter>
     </ClCompile>
     <ClCompile Include="FRAME_HANDLER\FrameProcessing.cpp">
       <Filter>Исходные файлы\FRAME_HANDLER</Filter>
+    </ClCompile>
+    <ClCompile Include="WORKER_CONTROLLER\WorkerThreads.cpp">
+      <Filter>Исходные файлы\WORKER_CONTROLLER</Filter>
+    </ClCompile>
+    <ClCompile Include="WORKER_CONTROLLER\WorkerController.cpp">
+      <Filter>Исходные файлы\WORKER_CONTROLLER</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -73,9 +73,6 @@
     </ClInclude>
     <ClInclude Include="MAIN\main.h">
       <Filter>Файлы заголовков\MAIN</Filter>
-    </ClInclude>
-    <ClInclude Include="APP_CONTROLLER\AppController.h">
-      <Filter>Файлы заголовков\APP_CONTROLLER</Filter>
     </ClInclude>
     <ClInclude Include="INTERFACES\IRecorder.h">
       <Filter>Файлы заголовков\INTERFACES</Filter>
@@ -88,6 +85,12 @@
     </ClInclude>
     <ClInclude Include="FRAME_HANDLER\FrameHandler.h">
       <Filter>Файлы заголовков\FRAME_HANDLER</Filter>
+    </ClInclude>
+    <ClInclude Include="WORKER_CONTROLLER\WorkerController.h">
+      <Filter>Файлы заголовков\WORKER_CONTROLLER</Filter>
+    </ClInclude>
+    <ClInclude Include="INTERFACES\IWorker.h">
+      <Filter>Файлы заголовков\INTERFACES</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

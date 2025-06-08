@@ -1,25 +1,18 @@
 #ifndef IRECORDER_H
 #define IRECORDER_H
 
+#include "IWorker.h"
 #include "TYPES/QueueWrapper.h"
 
-// Abstract interface for all recorder modules (e.g., screen, audio, mic) and handlers
-class IRecorder {
+// Abstract interface for all recorder modules (e.g., screen, audio, mic)
+class IRecorder : public IWorker {
 public:
-	IRecorder(QueueWrapper* pRecordedData) : pRecordedData(pRecordedData) {};
-
 	virtual ~IRecorder() = default;
 
-	// Initializes the recorder. Returns 0 on success.
-	virtual int Initialize() = 0;
-
-	// Starts the recorder's internal processing thread
-	virtual void StartThread() = 0;
-
-	// Signals the recorder to stop gracefully
-	virtual void EndRequest() = 0;
-
 protected:
+	IRecorder(QueueWrapper* pRecordedData) : pRecordedData(pRecordedData) {};
+
+	// We save recorded data there
 	QueueWrapper* pRecordedData;
 };
 
