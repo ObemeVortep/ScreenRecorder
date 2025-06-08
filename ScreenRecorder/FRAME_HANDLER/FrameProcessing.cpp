@@ -19,7 +19,7 @@ void FrameHandler::StartThread() {
 		ConvertFrame(vRawFrame, vJpegFrame);
 
 		// Push it in vProceededQueue
-		pProceededData->Push(vJpegFrame);
+		pProcessedData->Push(vJpegFrame);
 
 		i++;
 	}
@@ -27,7 +27,7 @@ void FrameHandler::StartThread() {
 	return;
 }
 
-// Convert one raw frame from pRecorderData from raw to jpeg and place it into pProceededData
+// Convert one raw frame from pRecorderData from raw to jpeg and place it into pProcessedData
 void FrameHandler::ConvertFrame(const std::vector<unsigned char>& vRawFrame, std::vector<unsigned char>& vJpegFrame) {
 	// Took from: github.com/libjpeg-turbo/libjpeg-turbo/blob/main/src/example.c
 	

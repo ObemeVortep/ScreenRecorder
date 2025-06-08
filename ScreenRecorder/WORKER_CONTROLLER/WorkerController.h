@@ -3,6 +3,7 @@
 
 #include "SCREEN_RECORDER/ScreenRecorder.h"		// Provides the ScreenRecorder implementation
 #include "FRAME_HANDLER/FrameHandler.h"			// Provides the FrameHandler implementation
+#include "TYPES/VideoPipelineBuffer.h"
 
 #include <thread>
 #include <atomic>
@@ -10,7 +11,7 @@
 class WorkerController {
 public:
 	// Constructor
-	WorkerController();
+	WorkerController(VideoPipelineBuffer* pVideoPipelineBuffer);
 
 	// Destructor
 	~WorkerController();
@@ -32,18 +33,15 @@ private:
 	);
 
 private:
-	// Shared RecordedData and ProceededData
-	SharedQueue<std::vector<unsigned char>> RecordedFrames;
-	SharedQueue<std::vector<unsigned char>> ProceededFrames;
-
-	// Recorder instances with their thread handles
+	// Recorder instances with their thread handles and recorded queues
 	ScreenRecorder ScreenRecorder;
 	std::jthread ScreenRecorderThread;
+	SharedQueue<std::vector<unsigned char>> RecordedFrames;
 
-	// Handler instances with their thread handles
+	// Handler instances with their thread handles and processed queues
 	FrameHandler FrameHandler;
 	std::jthread FrameHandlerThread;
-
+	SharedQueue<std::vector<unsigned char>> ProcessedFrames;
 };
 
 #endif // WORKER_CONTROLLER_H

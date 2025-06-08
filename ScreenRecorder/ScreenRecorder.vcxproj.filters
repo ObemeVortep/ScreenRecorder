@@ -75,6 +75,9 @@
     <ClCompile Include="VIDEO_CREATOR\VideoCreator.cpp">
       <Filter>Исходные файлы\VIDEO_CREATOR</Filter>
     </ClCompile>
+    <ClCompile Include="VIDEO_CREATOR\VideoCreation.cpp">
+      <Filter>Исходные файлы\VIDEO_CREATOR</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SCREEN_RECORDER\ScreenRecorder.h">
@@ -102,6 +105,9 @@
       <Filter>Файлы заголовков\VIDEO_CREATOR</Filter>
     </ClInclude>
     <ClInclude Include="TYPES\SharedQueue.h">
+      <Filter>Файлы заголовков\TYPES</Filter>
+    </ClInclude>
+    <ClInclude Include="TYPES\VideoPipelineBuffer.h">
       <Filter>Файлы заголовков\TYPES</Filter>
     </ClInclude>
   </ItemGroup>

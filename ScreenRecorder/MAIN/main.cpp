@@ -1,12 +1,16 @@
 ﻿#include "main.h"
-#include <iostream>
 
 int main() {
-	WorkerController WorkerController;
-	unsigned int uiThreads = WorkerController.StartThreads();
-	if (uiThreads == 0x03) {
-		std::cout << "All threads are inited." << std::endl;
-	}
+	// Main connection between WorkerController and VideoCreator
+	VideoPipelineBuffer VideoPipelineBuffer;
+
+	// WorkerController manages all data collection threads for video creation
+	WorkerController WorkerController(&VideoPipelineBuffer);
+	unsigned int uiActiveThreads = WorkerController.StartThreads();
+
+	// VideoCreator creates video from VideoPipelineBuffer data in real time
+	VideoCreator VideoCreator(&VideoPipelineBuffer, uiActiveThreads);
+	VideoCreator.StartVideoCreation();
 
 	while (true) {
 		std::this_thread::sleep_for(std::chrono::seconds(1000));

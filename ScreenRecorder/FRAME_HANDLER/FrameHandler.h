@@ -8,11 +8,11 @@
 #define WIDTH	1920		// We will get it dynamic in future
 #define HEIGHT	1080		// We will get it dynamic in future
 
-// This class converts raw data from DDAPI to jpeg and save it into pProceededData
+// This class converts raw data from DDAPI to jpeg and save it into pProcessedData
 class FrameHandler : public IHandler {
 public:
 	// Constructor
-	FrameHandler(SharedQueue<std::vector<unsigned char>>* pProceededData, SharedQueue<std::vector<unsigned char>>* pRecordedData);
+	FrameHandler(SharedQueue<std::vector<unsigned char>>* pProcessedData, SharedQueue<std::vector<unsigned char>>* pRecordedData);
 	// Destructor
 	~FrameHandler();
 
@@ -27,7 +27,7 @@ public:
 
 private:
     // Functions
-    // Convert one raw frame from pRecorderData from raw to jpeg and place it into pProceededData
+    // Convert one raw frame from pRecorderData from raw to jpeg and place it into pProcessedData
     void ConvertFrame(const std::vector<unsigned char>& vRawFrame, std::vector<unsigned char>& vJpegFrame);
 
     // Screen dimensions

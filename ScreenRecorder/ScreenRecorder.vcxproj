@@ -24,6 +24,7 @@
     <ClCompile Include="MAIN\main.cpp" />
     <ClCompile Include="SCREEN_RECORDER\ScreenCapture.cpp" />
     <ClCompile Include="SCREEN_RECORDER\ScreenRecorder.cpp" />
+    <ClCompile Include="VIDEO_CREATOR\VideoCreation.cpp" />
     <ClCompile Include="VIDEO_CREATOR\VideoCreator.cpp" />
     <ClCompile Include="WORKER_CONTROLLER\WorkerController.cpp" />
     <ClCompile Include="WORKER_CONTROLLER\WorkerThreads.cpp" />
@@ -36,6 +37,7 @@
     <ClInclude Include="MAIN\main.h" />
     <ClInclude Include="SCREEN_RECORDER\ScreenRecorder.h" />
     <ClInclude Include="TYPES\SharedQueue.h" />
+    <ClInclude Include="TYPES\VideoPipelineBuffer.h" />
     <ClInclude Include="VIDEO_CREATOR\VideoCreator.h" />
     <ClInclude Include="WORKER_CONTROLLER\WorkerController.h" />
   </ItemGroup>
