@@ -15,7 +15,7 @@ public:
 	 * Convert raw frame to encoded format.
 	 * returns a vector containing the encoded data.
 	 */
-	virtual std::vector<unsigned char> Convert(const std::vector<unsigned char>& vRawFrame) = 0;
+	virtual std::vector<unsigned char> Convert() = 0;
 };
 
 #endif // ICONVERTER_H

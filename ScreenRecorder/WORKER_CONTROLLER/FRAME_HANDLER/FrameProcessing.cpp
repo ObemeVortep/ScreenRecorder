@@ -19,7 +19,7 @@ void FrameHandler::StartThread() {
 		//pRecordedData->WaitFrontAndPop(vRawFrame);
 
 		// Convert frame to H.264
-		vH264Frame = H264Converter.Convert(vRawFrame);
+		vH264Frame = H264Converter.Convert();
 
 		// Check, if vH264Frame contains valid frame
 		if (!vH264Frame.empty()) {

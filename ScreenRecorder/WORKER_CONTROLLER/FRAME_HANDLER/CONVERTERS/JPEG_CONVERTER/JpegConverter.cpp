@@ -24,7 +24,12 @@ int JpegConverter::Initialize(int iNewWidth, int iNewHeight) {
 }
 
 // Converts raw BGRA frame to .jpeg format. Returns empty vector if error is occured
-std::vector<unsigned char> JpegConverter::Convert(const std::vector<unsigned char>& vRawFrame) {
+std::vector<unsigned char> JpegConverter::Convert() {
+	// We need to check vRawFrame first
+	if (vRawFrame.empty()) {
+		return std::vector<unsigned char>();
+	}
+
 	// Took from: github.com/libjpeg-turbo/libjpeg-turbo/blob/main/src/example.c
 	// Vector that contains .jpeg frame
 	std::vector<unsigned char> vJpegFrame;	

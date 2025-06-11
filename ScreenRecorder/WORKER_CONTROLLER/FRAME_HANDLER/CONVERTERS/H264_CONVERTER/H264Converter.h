@@ -11,12 +11,15 @@
 #include <d3d12.h>
 #include "nvidia-nvenc/nvEncodeAPI.h"
 #include "nvidia-nvenc/nvcommon.h"
+#include "H264Concepts.h"
 
 #include <memory>
 #include <wrl/client.h>
 using Microsoft::WRL::ComPtr;
 
 #define FRAMES_PER_SECOND   60      // Frames per second, that we recording
+
+// Concept that 
 
 class H264Converter : public IConverter {
 public:
@@ -30,10 +33,10 @@ public:
 
 	// Convert raw BGRA frame to H.264 format
 	// This function is called when ID3D12Resource* pInputBuffer has valid BGRA frame
-	std::vector<unsigned char> Convert(const std::vector<unsigned char>& vRawFrame) override;
+	std::vector<unsigned char> Convert() override;
 
 private:
-	// Functions
+	// Initialize helper functions
 	// Set metrics
 	int SetMetrics(int iNewWidth, int iNewHeight);
 
@@ -68,6 +71,21 @@ private:
 	int RegisterBuffers();
 	int RegisterInputBuffer();
 	int RegisterOutputBuffer();
+
+private:
+	// Convert helper functions
+	// Map buffer and return NV_ENC_MAP_INPUT_RESOURCE in unique_ptr
+	inline std::unique_ptr<NV_ENC_MAP_INPUT_RESOURCE> MapNvBuffer(NV_ENC_REGISTERED_PTR pRegisteredResource);
+
+	// Create and return NV_ENC_INPUT_RESOURCE_D3D12 or NV_ENC_OUTPUT_RESOURCE_D3D12 in unique_ptr
+	template <NvEncInOutResorceD3D12 T>
+	inline std::unique_ptr<T> CreateNvResD3D12(NV_ENC_INPUT_PTR pMappedResource, NV_ENC_FENCE_POINT_D3D12* pFenceD3D12);
+
+	// Create and return NV_ENC_PIC_PARAMS in unique_ptr
+	inline std::unique_ptr<NV_ENC_PIC_PARAMS> CreateNvPicParams(NV_ENC_INPUT_PTR pInputBuffer, NV_ENC_OUTPUT_PTR pOutputBitstream);
+	
+	// Create and return NV_ENC_LOCK_BITSTREAM in unique_ptr
+	inline std::unique_ptr<NV_ENC_LOCK_BITSTREAM> CreateNvLockBitsream(PVOID pOutputBistream);
 
 private:
 	// DirectX structures, that are shared with other modules for optimizing performance

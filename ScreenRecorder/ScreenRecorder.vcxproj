@@ -20,35 +20,37 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DIRECTX_MANAGER\DirectXManager.cpp" />
-    <ClCompile Include="FRAME_HANDLER\CONVERTERS\H264_CONVERTER\H264Converter.cpp" />
-    <ClCompile Include="FRAME_HANDLER\CONVERTERS\H264_CONVERTER\H264ConverterInitialization.cpp" />
-    <ClCompile Include="FRAME_HANDLER\CONVERTERS\JPEG_CONVERTER\JpegConverter.cpp" />
-    <ClCompile Include="FRAME_HANDLER\FrameHandler.cpp" />
-    <ClCompile Include="FRAME_HANDLER\FrameProcessing.cpp" />
-    <ClCompile Include="MAIN\main.cpp" />
-    <ClCompile Include="SCREEN_RECORDER\ScreenCapture.cpp" />
-    <ClCompile Include="SCREEN_RECORDER\ScreenRecorder.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="VIDEO_CREATOR\VideoCreation.cpp" />
     <ClCompile Include="VIDEO_CREATOR\VideoCreator.cpp" />
+    <ClCompile Include="WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS\H264_CONVERTER\H264Convert.cpp" />
+    <ClCompile Include="WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS\H264_CONVERTER\H264Converter.cpp" />
+    <ClCompile Include="WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS\H264_CONVERTER\H264ConverterInitialization.cpp" />
+    <ClCompile Include="WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS\JPEG_CONVERTER\JpegConverter.cpp" />
+    <ClCompile Include="WORKER_CONTROLLER\FRAME_HANDLER\FrameHandler.cpp" />
+    <ClCompile Include="WORKER_CONTROLLER\FRAME_HANDLER\FrameProcessing.cpp" />
+    <ClCompile Include="WORKER_CONTROLLER\SCREEN_RECORDER\ScreenCapture.cpp" />
+    <ClCompile Include="WORKER_CONTROLLER\SCREEN_RECORDER\ScreenRecorder.cpp" />
     <ClCompile Include="WORKER_CONTROLLER\WorkerController.cpp" />
     <ClCompile Include="WORKER_CONTROLLER\WorkerThreads.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DIRECTX_MANAGER\DirectXManager.h" />
-    <ClInclude Include="FRAME_HANDLER\CONVERTERS\H264_CONVERTER\H264Converter.h" />
-    <ClInclude Include="FRAME_HANDLER\CONVERTERS\JPEG_CONVERTER\JpegConverter.h" />
-    <ClInclude Include="FRAME_HANDLER\FrameHandler.h" />
     <ClInclude Include="INTERFACES\IConverter.h" />
     <ClInclude Include="INTERFACES\IHandler.h" />
     <ClInclude Include="INTERFACES\IRecorder.h" />
     <ClInclude Include="INTERFACES\IWorker.h" />
-    <ClInclude Include="MAIN\main.h" />
-    <ClInclude Include="SCREEN_RECORDER\ScreenRecorder.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="TYPES\DirectXShared.h" />
     <ClInclude Include="TYPES\SharedDX11On12Texture2D.h" />
     <ClInclude Include="TYPES\SharedQueue.h" />
     <ClInclude Include="TYPES\VideoPipelineBuffer.h" />
     <ClInclude Include="VIDEO_CREATOR\VideoCreator.h" />
+    <ClInclude Include="WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS\H264_CONVERTER\H264Concepts.h" />
+    <ClInclude Include="WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS\H264_CONVERTER\H264Converter.h" />
+    <ClInclude Include="WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS\JPEG_CONVERTER\JpegConverter.h" />
+    <ClInclude Include="WORKER_CONTROLLER\FRAME_HANDLER\FrameHandler.h" />
+    <ClInclude Include="WORKER_CONTROLLER\SCREEN_RECORDER\ScreenRecorder.h" />
     <ClInclude Include="WORKER_CONTROLLER\WorkerController.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -13,29 +13,11 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Файлы заголовков\MAIN">
-      <UniqueIdentifier>{15ea4aa7-beba-4c3b-9092-3475bc3f9495}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Исходные файлы\MAIN">
-      <UniqueIdentifier>{726323ce-680c-4dec-a73f-62a083e8bcad}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Исходные файлы\SCREEN_RECORDER">
-      <UniqueIdentifier>{50e5d879-1ba1-41b1-838a-ffba5572230b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Файлы заголовков\SCREEN_RECORDER">
-      <UniqueIdentifier>{6db839e6-8cfc-4453-bb9a-5dab69628511}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Файлы заголовков\INTERFACES">
       <UniqueIdentifier>{af6fa5ed-5c5d-438e-8510-e9bb6391d4f3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Файлы заголовков\TYPES">
       <UniqueIdentifier>{95769e09-9bfb-42e1-834f-f7ad33ebf25f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Исходные файлы\FRAME_HANDLER">
-      <UniqueIdentifier>{67d76ad6-582e-4055-8557-e6afdc441999}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Файлы заголовков\FRAME_HANDLER">
-      <UniqueIdentifier>{2cec6ba2-c07b-4bd7-a03e-313a6c9269b5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Файлы заголовков\WORKER_CONTROLLER">
       <UniqueIdentifier>{fe92da22-9729-4c6b-be0b-e92f47bff54f}</UniqueIdentifier>
@@ -43,29 +25,8 @@
     <Filter Include="Исходные файлы\WORKER_CONTROLLER">
       <UniqueIdentifier>{42c96c2e-cfe5-4b20-a053-6d0565c6de14}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Исходные файлы\VIDEO_CREATOR">
-      <UniqueIdentifier>{9dfb15d1-cac3-4cfc-9c09-408aa0d35d34}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Файлы заголовков\VIDEO_CREATOR">
       <UniqueIdentifier>{9ab605c3-c49a-4c3a-b85e-d3afc2d79908}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Исходные файлы\FRAME_HANDLER\CONVERTERS">
-      <UniqueIdentifier>{d1e8bf6a-0d14-49be-bcae-45fe2311011f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Исходные файлы\FRAME_HANDLER\CONVERTERS\JPEG_CONVERTER">
-      <UniqueIdentifier>{37e09d5a-6b51-43a9-a2bf-37d47bf62e5e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Исходные файлы\FRAME_HANDLER\CONVERTERS\H264_CONVERTER">
-      <UniqueIdentifier>{0babce26-5fc1-4d2e-9a5d-7a0eee838afd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Файлы заголовков\FRAME_HANDLER\CONVERTERS">
-      <UniqueIdentifier>{c88c187d-f36c-44e6-a112-3dac7ddd8e68}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Файлы заголовков\FRAME_HANDLER\CONVERTERS\JPEG_CONVERTER">
-      <UniqueIdentifier>{ae2d6685-f6c4-4e34-935d-8170e3b38b79}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Файлы заголовков\FRAME_HANDLER\CONVERTERS\H264_CONVERTER">
-      <UniqueIdentifier>{4834ee0d-2cdb-4ce6-9e5d-f0387457f0d1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Файлы заголовков\DIRECTX_MANAGER">
       <UniqueIdentifier>{58ad177c-c968-43df-a5c6-eecb11bba9af}</UniqueIdentifier>
@@ -73,23 +34,41 @@
     <Filter Include="Исходные файлы\DIRECTX_MANAGER">
       <UniqueIdentifier>{d88a3720-ca94-4fa4-96cf-7f3bc54e2556}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\WORKER_CONTROLLER\SCREEN_RECORDER">
+      <UniqueIdentifier>{50e5d879-1ba1-41b1-838a-ffba5572230b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\VIDEO_CREATOR">
+      <UniqueIdentifier>{9dfb15d1-cac3-4cfc-9c09-408aa0d35d34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\WORKER_CONTROLLER\FRAME_HANDLER">
+      <UniqueIdentifier>{67d76ad6-582e-4055-8557-e6afdc441999}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS">
+      <UniqueIdentifier>{d1e8bf6a-0d14-49be-bcae-45fe2311011f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS\JPEG_CONVERTER">
+      <UniqueIdentifier>{37e09d5a-6b51-43a9-a2bf-37d47bf62e5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS\H264_CONVERTER">
+      <UniqueIdentifier>{0babce26-5fc1-4d2e-9a5d-7a0eee838afd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\WORKER_CONTROLLER\FRAME_HANDLER">
+      <UniqueIdentifier>{2cec6ba2-c07b-4bd7-a03e-313a6c9269b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS">
+      <UniqueIdentifier>{c88c187d-f36c-44e6-a112-3dac7ddd8e68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS\JPEG_CONVERTER">
+      <UniqueIdentifier>{ae2d6685-f6c4-4e34-935d-8170e3b38b79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS\H264_CONVERTER">
+      <UniqueIdentifier>{4834ee0d-2cdb-4ce6-9e5d-f0387457f0d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\WORKER_CONTROLLER\SCREEN_RECORDER">
+      <UniqueIdentifier>{6db839e6-8cfc-4453-bb9a-5dab69628511}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SCREEN_RECORDER\ScreenRecorder.cpp">
-      <Filter>Исходные файлы\SCREEN_RECORDER</Filter>
-    </ClCompile>
-    <ClCompile Include="MAIN\main.cpp">
-      <Filter>Исходные файлы\MAIN</Filter>
-    </ClCompile>
-    <ClCompile Include="SCREEN_RECORDER\ScreenCapture.cpp">
-      <Filter>Исходные файлы\SCREEN_RECORDER</Filter>
-    </ClCompile>
-    <ClCompile Include="FRAME_HANDLER\FrameHandler.cpp">
-      <Filter>Исходные файлы\FRAME_HANDLER</Filter>
-    </ClCompile>
-    <ClCompile Include="FRAME_HANDLER\FrameProcessing.cpp">
-      <Filter>Исходные файлы\FRAME_HANDLER</Filter>
-    </ClCompile>
     <ClCompile Include="WORKER_CONTROLLER\WorkerThreads.cpp">
       <Filter>Исходные файлы\WORKER_CONTROLLER</Filter>
     </ClCompile>
@@ -102,34 +81,43 @@
     <ClCompile Include="VIDEO_CREATOR\VideoCreation.cpp">
       <Filter>Исходные файлы\VIDEO_CREATOR</Filter>
     </ClCompile>
-    <ClCompile Include="FRAME_HANDLER\CONVERTERS\H264_CONVERTER\H264Converter.cpp">
-      <Filter>Исходные файлы\FRAME_HANDLER\CONVERTERS\H264_CONVERTER</Filter>
-    </ClCompile>
-    <ClCompile Include="FRAME_HANDLER\CONVERTERS\JPEG_CONVERTER\JpegConverter.cpp">
-      <Filter>Исходные файлы\FRAME_HANDLER\CONVERTERS\JPEG_CONVERTER</Filter>
-    </ClCompile>
-    <ClCompile Include="FRAME_HANDLER\CONVERTERS\H264_CONVERTER\H264ConverterInitialization.cpp">
-      <Filter>Исходные файлы\FRAME_HANDLER\CONVERTERS\H264_CONVERTER</Filter>
-    </ClCompile>
     <ClCompile Include="DIRECTX_MANAGER\DirectXManager.cpp">
       <Filter>Исходные файлы\DIRECTX_MANAGER</Filter>
     </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="WORKER_CONTROLLER\FRAME_HANDLER\FrameProcessing.cpp">
+      <Filter>Исходные файлы\WORKER_CONTROLLER\FRAME_HANDLER</Filter>
+    </ClCompile>
+    <ClCompile Include="WORKER_CONTROLLER\FRAME_HANDLER\FrameHandler.cpp">
+      <Filter>Исходные файлы\WORKER_CONTROLLER\FRAME_HANDLER</Filter>
+    </ClCompile>
+    <ClCompile Include="WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS\JPEG_CONVERTER\JpegConverter.cpp">
+      <Filter>Исходные файлы\WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS\JPEG_CONVERTER</Filter>
+    </ClCompile>
+    <ClCompile Include="WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS\H264_CONVERTER\H264ConverterInitialization.cpp">
+      <Filter>Исходные файлы\WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS\H264_CONVERTER</Filter>
+    </ClCompile>
+    <ClCompile Include="WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS\H264_CONVERTER\H264Converter.cpp">
+      <Filter>Исходные файлы\WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS\H264_CONVERTER</Filter>
+    </ClCompile>
+    <ClCompile Include="WORKER_CONTROLLER\SCREEN_RECORDER\ScreenRecorder.cpp">
+      <Filter>Исходные файлы\WORKER_CONTROLLER\SCREEN_RECORDER</Filter>
+    </ClCompile>
+    <ClCompile Include="WORKER_CONTROLLER\SCREEN_RECORDER\ScreenCapture.cpp">
+      <Filter>Исходные файлы\WORKER_CONTROLLER\SCREEN_RECORDER</Filter>
+    </ClCompile>
+    <ClCompile Include="WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS\H264_CONVERTER\H264Convert.cpp">
+      <Filter>Исходные файлы\WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS\H264_CONVERTER</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SCREEN_RECORDER\ScreenRecorder.h">
-      <Filter>Файлы заголовков\SCREEN_RECORDER</Filter>
-    </ClInclude>
-    <ClInclude Include="MAIN\main.h">
-      <Filter>Файлы заголовков\MAIN</Filter>
-    </ClInclude>
     <ClInclude Include="INTERFACES\IRecorder.h">
       <Filter>Файлы заголовков\INTERFACES</Filter>
     </ClInclude>
     <ClInclude Include="INTERFACES\IHandler.h">
       <Filter>Файлы заголовков\INTERFACES</Filter>
-    </ClInclude>
-    <ClInclude Include="FRAME_HANDLER\FrameHandler.h">
-      <Filter>Файлы заголовков\FRAME_HANDLER</Filter>
     </ClInclude>
     <ClInclude Include="WORKER_CONTROLLER\WorkerController.h">
       <Filter>Файлы заголовков\WORKER_CONTROLLER</Filter>
@@ -149,12 +137,6 @@
     <ClInclude Include="INTERFACES\IConverter.h">
       <Filter>Файлы заголовков\INTERFACES</Filter>
     </ClInclude>
-    <ClInclude Include="FRAME_HANDLER\CONVERTERS\H264_CONVERTER\H264Converter.h">
-      <Filter>Файлы заголовков\FRAME_HANDLER\CONVERTERS\H264_CONVERTER</Filter>
-    </ClInclude>
-    <ClInclude Include="FRAME_HANDLER\CONVERTERS\JPEG_CONVERTER\JpegConverter.h">
-      <Filter>Файлы заголовков\FRAME_HANDLER\CONVERTERS\JPEG_CONVERTER</Filter>
-    </ClInclude>
     <ClInclude Include="DIRECTX_MANAGER\DirectXManager.h">
       <Filter>Файлы заголовков\DIRECTX_MANAGER</Filter>
     </ClInclude>
@@ -163,6 +145,24 @@
     </ClInclude>
     <ClInclude Include="TYPES\SharedDX11On12Texture2D.h">
       <Filter>Файлы заголовков\TYPES</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="WORKER_CONTROLLER\SCREEN_RECORDER\ScreenRecorder.h">
+      <Filter>Файлы заголовков\WORKER_CONTROLLER\SCREEN_RECORDER</Filter>
+    </ClInclude>
+    <ClInclude Include="WORKER_CONTROLLER\FRAME_HANDLER\FrameHandler.h">
+      <Filter>Файлы заголовков\WORKER_CONTROLLER\FRAME_HANDLER</Filter>
+    </ClInclude>
+    <ClInclude Include="WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS\JPEG_CONVERTER\JpegConverter.h">
+      <Filter>Файлы заголовков\WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS\JPEG_CONVERTER</Filter>
+    </ClInclude>
+    <ClInclude Include="WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS\H264_CONVERTER\H264Converter.h">
+      <Filter>Файлы заголовков\WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS\H264_CONVERTER</Filter>
+    </ClInclude>
+    <ClInclude Include="WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS\H264_CONVERTER\H264Concepts.h">
+      <Filter>Файлы заголовков\WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS\H264_CONVERTER</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
