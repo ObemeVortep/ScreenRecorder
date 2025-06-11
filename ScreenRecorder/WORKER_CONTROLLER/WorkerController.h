@@ -1,20 +1,27 @@
 #ifndef WORKER_CONTROLLER_H
 #define WORKER_CONTROLLER_H
 
+#include "TYPES/DirectXShared.h"
+#include "TYPES/SharedDX11On12Texture2D.h"
+#include "TYPES/VideoPipelineBuffer.h"
+
 #include "SCREEN_RECORDER/ScreenRecorder.h"		// Provides the ScreenRecorder implementation
 #include "FRAME_HANDLER/FrameHandler.h"			// Provides the FrameHandler implementation
-#include "TYPES/VideoPipelineBuffer.h"
 
 #include <thread>
 #include <atomic>
+#include <memory>
 
 class WorkerController {
 public:
 	// Constructor
-	WorkerController(VideoPipelineBuffer* pVideoPipelineBuffer);
+	WorkerController(std::shared_ptr<DIRECTX12_SHARED> spDirectX12Shared, std::shared_ptr<DIRECTX11ON12_SHARED> spDirectX11On12Shared, std::shared_ptr<DIRECTX11_SHARED> spDirectX11Shared);
 
 	// Destructor
 	~WorkerController();
+
+	// Initialize WorkerController
+	int Initialize();
 
 	// Starts all recorder threads and waits for their initialization
 	unsigned int StartThreads();
@@ -33,10 +40,15 @@ private:
 	);
 
 private:
-	// Recorder instances with their thread handles and recorded queues
+	// Connectors between RECORDER <-> HANDLER
+	// ScreenRecorder -> FrameHandler
+	std::shared_ptr<SharedDX11On12Texture2D> spSharedDX11On12Texture2D;
+	SharedQueue<std::vector<unsigned char>> RecordedFrames;
+
+private:
+	// Recorder instances with their thread handles
 	ScreenRecorder ScreenRecorder;
 	std::jthread ScreenRecorderThread;
-	SharedQueue<std::vector<unsigned char>> RecordedFrames;
 
 	// Handler instances with their thread handles and processed queues
 	FrameHandler FrameHandler;

@@ -1,53 +1,58 @@
 #include "ScreenRecorder.h"
 
-// For ComPtr smart pointer wrapper
-#include <wrl/client.h>
-using Microsoft::WRL::ComPtr;
-
 // Constructor – initializes all member variables
-ScreenRecorder::ScreenRecorder(SharedQueue<std::vector<unsigned char>>* pRecordedData)
-	: pDevice(nullptr), pContext(nullptr), pDeskDupl(nullptr), iWidth(0), iHeight(0),
-		IRecorder(pRecordedData)
-			{ }
+ScreenRecorder::ScreenRecorder(std::shared_ptr<DIRECTX11ON12_SHARED> spDirectX11On12Shared, std::shared_ptr<DIRECTX11_SHARED> spDirectX11Shared, std::shared_ptr<SharedDX11On12Texture2D> spSharedDX11On12Texture2D, SharedQueue<std::vector<unsigned char>>* pRecordedData)
+	: spDirectX11On12Shared(spDirectX11On12Shared), spDirectX11Shared(spDirectX11Shared), spSharedDX11On12Texture2D(spSharedDX11On12Texture2D),
+		 iWidth(0), iHeight(0),
+			IRecorder(pRecordedData)
+				{ }
 
-// Destructor – releases COM interfaces in correct order
-ScreenRecorder::~ScreenRecorder() {
-	// Release order: pDeskDupl -> pContext -> pDevice
-	auto d3d11Release = [](auto& pD3D11) {
-		if (pD3D11) {
-			pD3D11->Release(); 
-			pD3D11 = nullptr;
-		}
-	};
-	d3d11Release(pDeskDupl);
-	d3d11Release(pContext);
-	d3d11Release(pDevice);
+// Destructor
+ScreenRecorder::~ScreenRecorder() 
+	{ }
+
+// Initialize shared D11On12 Texture2D 
+int ScreenRecorder::InitializeSharedTex() {
+	// 1. Check, if DirectX shared structures are valid
+	if (!spDirectX11On12Shared || !spDirectX11Shared) {
+		// One or two of DirectX shared structures are not valid
+		return -1;
+	}
+
+	// 2. Create shared Dx11On12 Texture 2D
+	if (FAILED(spSharedDX11On12Texture2D->CreateSharedTexture2D(WIDTH, HEIGHT))) {
+		// Failed to create shared handle
+		return -2;
+	}
+
+	// 3. Create and get shared handle
+	HANDLE hShared = NULL;
+	if (FAILED(spSharedDX11On12Texture2D->CreateSharedHandle(&hShared))) {
+		// Failed to create shared handle
+		return -3;
+	}
+
+	// 4. Open shared handle
+	if (FAILED(spDirectX11Shared->cpDevice1.Get()->OpenSharedResource1(hShared, __uuidof(ID3D11Texture2D), reinterpret_cast<void**>(SharedTex.GetAddressOf())))) {
+		// Failed to open shared resource
+		return -4;
+	}
+
+	return 0;
 }
-
 // Initializes the capturing interfaces
 int ScreenRecorder::Initialize() {
 	HRESULT hr = S_OK;
 
-	// Try to create a D3D11 device
-	hr = D3D11CreateDevice(
-		nullptr,								// Use the default adapter
-		D3D_DRIVER_TYPE_HARDWARE,				// Preferred driver type
-		nullptr,								// No software device
-		D3D11_CREATE_DEVICE_SINGLETHREADED,		// For better performance
-		nullptr, 0,								// Default feature levels
-		D3D11_SDK_VERSION,						// Must be D3D11_SDK_VERSION
-		&pDevice,
-		nullptr,								// We don't need the feature level
-		&pContext								
-	);
-	if (FAILED(hr)) {
-		// Failed to create D3D11 device
+	// Initialize shared D11On12 Texture2D 
+	if (InitializeSharedTex() != 0) {
+		// Failed to initialize shared D11On12 Texture2D 
 		return -1;
 	}
 
 	// Get DXGI device from D3D11 device
 	ComPtr<IDXGIDevice> DxgiDevice;
-	hr = pDevice->QueryInterface(
+	hr = spDirectX11Shared->cpDevice.Get()->QueryInterface(
 		__uuidof(IDXGIDevice),
 		reinterpret_cast<void**>(DxgiDevice.GetAddressOf())
 	);
@@ -106,7 +111,7 @@ int ScreenRecorder::Initialize() {
 	}
 
 	// Create the desktop duplication interface
-	hr = DxgiOutput1->DuplicateOutput(pDevice, &pDeskDupl);
+	hr = DxgiOutput1->DuplicateOutput(spDirectX11Shared->cpDevice.Get(), cpDeskDupl.GetAddressOf());
 	if (FAILED(hr)) {
 		// Failed to create desktop duplication
 		return -8;

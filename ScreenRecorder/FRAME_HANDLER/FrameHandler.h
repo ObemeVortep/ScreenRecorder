@@ -3,7 +3,12 @@
 
 #include "INTERFACES/IHandler.h"
 
-#pragma comment (lib, "FRAME_HANDLER/libjpeg-turbo/turbojpeg-static.lib")   // For RGBA to JPEG convertion. Decided to use static for better optimization.
+#include "TYPES/DirectXShared.h"
+
+#include "CONVERTERS/JPEG_CONVERTER/JpegConverter.h"
+#include "CONVERTERS/H264_CONVERTER/H264Converter.h"
+
+#include <memory>
 
 #define WIDTH	1920		// We will get it dynamic in future
 #define HEIGHT	1080		// We will get it dynamic in future
@@ -12,7 +17,7 @@
 class FrameHandler : public IHandler {
 public:
 	// Constructor
-	FrameHandler(SharedQueue<std::vector<unsigned char>>* pProcessedData, SharedQueue<std::vector<unsigned char>>* pRecordedData);
+	FrameHandler(std::shared_ptr<DIRECTX12_SHARED> spDirectX12Shared, std::shared_ptr<SharedDX11On12Texture2D> spSharedDX11On12Texture2D, SharedQueue<std::vector<unsigned char>>* pProcessedData, SharedQueue<std::vector<unsigned char>>* pRecordedData);
 	// Destructor
 	~FrameHandler();
 
@@ -26,13 +31,17 @@ public:
     void EndRequest() override;
 
 private:
-    // Functions
-    // Convert one raw frame from pRecorderData from raw to jpeg and place it into pProcessedData
-    void ConvertFrame(const std::vector<unsigned char>& vRawFrame, std::vector<unsigned char>& vJpegFrame);
+    // Connectors between RECORDER <-> HANDLER
+    // ScreenRecorder -> FrameHandler
+    std::shared_ptr<SharedDX11On12Texture2D> spSharedDX11On12Texture2D;
 
-    // Screen dimensions
-    int                     iWidth;
-    int                     iHeight;
+private:
+    // Variables
+    // BGRA-to-JPEG converter. Must be initialized before using.
+    JpegConverter JpegConverter;
+
+    // BGRA-to-H264 converter. Must be initialized before using.
+    H264Converter H264Converter;
 };
 
 #endif // FRAME_HANDLER_H

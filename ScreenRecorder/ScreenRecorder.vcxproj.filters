@@ -49,6 +49,30 @@
     <Filter Include="Файлы заголовков\VIDEO_CREATOR">
       <UniqueIdentifier>{9ab605c3-c49a-4c3a-b85e-d3afc2d79908}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\FRAME_HANDLER\CONVERTERS">
+      <UniqueIdentifier>{d1e8bf6a-0d14-49be-bcae-45fe2311011f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\FRAME_HANDLER\CONVERTERS\JPEG_CONVERTER">
+      <UniqueIdentifier>{37e09d5a-6b51-43a9-a2bf-37d47bf62e5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\FRAME_HANDLER\CONVERTERS\H264_CONVERTER">
+      <UniqueIdentifier>{0babce26-5fc1-4d2e-9a5d-7a0eee838afd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\FRAME_HANDLER\CONVERTERS">
+      <UniqueIdentifier>{c88c187d-f36c-44e6-a112-3dac7ddd8e68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\FRAME_HANDLER\CONVERTERS\JPEG_CONVERTER">
+      <UniqueIdentifier>{ae2d6685-f6c4-4e34-935d-8170e3b38b79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\FRAME_HANDLER\CONVERTERS\H264_CONVERTER">
+      <UniqueIdentifier>{4834ee0d-2cdb-4ce6-9e5d-f0387457f0d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\DIRECTX_MANAGER">
+      <UniqueIdentifier>{58ad177c-c968-43df-a5c6-eecb11bba9af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\DIRECTX_MANAGER">
+      <UniqueIdentifier>{d88a3720-ca94-4fa4-96cf-7f3bc54e2556}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SCREEN_RECORDER\ScreenRecorder.cpp">
@@ -77,6 +101,18 @@
     </ClCompile>
     <ClCompile Include="VIDEO_CREATOR\VideoCreation.cpp">
       <Filter>Исходные файлы\VIDEO_CREATOR</Filter>
+    </ClCompile>
+    <ClCompile Include="FRAME_HANDLER\CONVERTERS\H264_CONVERTER\H264Converter.cpp">
+      <Filter>Исходные файлы\FRAME_HANDLER\CONVERTERS\H264_CONVERTER</Filter>
+    </ClCompile>
+    <ClCompile Include="FRAME_HANDLER\CONVERTERS\JPEG_CONVERTER\JpegConverter.cpp">
+      <Filter>Исходные файлы\FRAME_HANDLER\CONVERTERS\JPEG_CONVERTER</Filter>
+    </ClCompile>
+    <ClCompile Include="FRAME_HANDLER\CONVERTERS\H264_CONVERTER\H264ConverterInitialization.cpp">
+      <Filter>Исходные файлы\FRAME_HANDLER\CONVERTERS\H264_CONVERTER</Filter>
+    </ClCompile>
+    <ClCompile Include="DIRECTX_MANAGER\DirectXManager.cpp">
+      <Filter>Исходные файлы\DIRECTX_MANAGER</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -108,6 +144,24 @@
       <Filter>Файлы заголовков\TYPES</Filter>
     </ClInclude>
     <ClInclude Include="TYPES\VideoPipelineBuffer.h">
+      <Filter>Файлы заголовков\TYPES</Filter>
+    </ClInclude>
+    <ClInclude Include="INTERFACES\IConverter.h">
+      <Filter>Файлы заголовков\INTERFACES</Filter>
+    </ClInclude>
+    <ClInclude Include="FRAME_HANDLER\CONVERTERS\H264_CONVERTER\H264Converter.h">
+      <Filter>Файлы заголовков\FRAME_HANDLER\CONVERTERS\H264_CONVERTER</Filter>
+    </ClInclude>
+    <ClInclude Include="FRAME_HANDLER\CONVERTERS\JPEG_CONVERTER\JpegConverter.h">
+      <Filter>Файлы заголовков\FRAME_HANDLER\CONVERTERS\JPEG_CONVERTER</Filter>
+    </ClInclude>
+    <ClInclude Include="DIRECTX_MANAGER\DirectXManager.h">
+      <Filter>Файлы заголовков\DIRECTX_MANAGER</Filter>
+    </ClInclude>
+    <ClInclude Include="TYPES\DirectXShared.h">
+      <Filter>Файлы заголовков\TYPES</Filter>
+    </ClInclude>
+    <ClInclude Include="TYPES\SharedDX11On12Texture2D.h">
       <Filter>Файлы заголовков\TYPES</Filter>
     </ClInclude>
   </ItemGroup>

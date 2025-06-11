@@ -1,5 +1,7 @@
 #include "ScreenRecorder.h"
 
+#include <iostream>
+
 // For ComPtr smart pointer wrapper
 #include <wrl/client.h>
 using Microsoft::WRL::ComPtr;
@@ -11,10 +13,16 @@ void ScreenRecorder::StartThread() {
 
 	// Make 1FPS stream
 	while (true) {
+		// Wait untill we can use D11 Resource for screen capture
+		spSharedDX11On12Texture2D->WaitAndUseD11();
+
 		// Attempt to capture a single screenshot
 		if (GetFrame(vFrameData)) {
-			pRecordedData->Push(vFrameData);
+			//pRecordedData->Push(vFrameData);
 		}
+		// After we got the frame, we must notify FrameHandler that he can work with D3D12Resource
+		spSharedDX11On12Texture2D->NotifyEndD11();
+
 		std::this_thread::sleep_for(std::chrono::milliseconds(1000 / FRAMES_PER_SECOND));
 	}
 
@@ -33,7 +41,7 @@ bool ScreenRecorder::GetFrame(std::vector<BYTE>& vFrameData) {
 	// Attempt to acquire the next frame
 	ComPtr<IDXGIResource> DxgiRes;
 	DXGI_OUTDUPL_FRAME_INFO FrameInfo;
-	hr = pDeskDupl->AcquireNextFrame(0, &FrameInfo, DxgiRes.GetAddressOf());
+	hr = cpDeskDupl.Get()->AcquireNextFrame(0, &FrameInfo, DxgiRes.GetAddressOf());
 	if (FAILED(hr)) {
 		return false;
 	}
@@ -55,17 +63,20 @@ bool ScreenRecorder::GetFrame(std::vector<BYTE>& vFrameData) {
 
 	// Attempt to create the CPU texture
 	ComPtr<ID3D11Texture2D> CpuTex2D;
-	hr = pDevice->CreateTexture2D(&desc, nullptr, CpuTex2D.GetAddressOf());
+	hr = spDirectX11Shared->cpDevice.Get()->CreateTexture2D(&desc, nullptr, CpuTex2D.GetAddressOf());
 	if (FAILED(hr)) {
 		return false;
 	}
 
+	// Attempt to open shared resource (wrapped ID3D12Resource)
+	spDirectX11Shared->cpContext.Get()->CopyResource(SharedTex.Get(), GpuTex2D.Get());
+
 	// Copy the GPU texture to the CPU texture
-	pContext->CopyResource(CpuTex2D.Get(), GpuTex2D.Get());
+	spDirectX11Shared->cpContext.Get()->CopyResource(CpuTex2D.Get(), SharedTex.Get());
 
 	// Map the CPU texture to access its pixel data
 	D3D11_MAPPED_SUBRESOURCE MappedData;
-	hr = pContext->Map(CpuTex2D.Get(), 0, D3D11_MAP_READ, 0, &MappedData);
+	hr = spDirectX11Shared->cpContext.Get()->Map(CpuTex2D.Get(), 0, D3D11_MAP_READ, 0, &MappedData);
 	if (FAILED(hr)) {
 		return false;
 	}
@@ -82,8 +93,8 @@ bool ScreenRecorder::GetFrame(std::vector<BYTE>& vFrameData) {
 	}
 
 	// Unmap the texture and release the acquired frame
-	pContext->Unmap(CpuTex2D.Get(), 0);
-	pDeskDupl->ReleaseFrame();
+	spDirectX11Shared->cpContext.Get()->Unmap(CpuTex2D.Get(), 0);
+	cpDeskDupl.Get()->ReleaseFrame();
 
 	return true;
 }
