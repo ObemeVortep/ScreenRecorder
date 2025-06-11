@@ -1,24 +1,36 @@
-# 🖥️ ScreenRecorder – A Modern C++ Learning Project
+# 🖥️ ScreenRecorder – A High-Performance Modern C++ Project
 
-This repository documents a personal project focused on deepening my understanding of **modern C++ (C++17/20)** through the development of a screen recording system.
+This repository documents a personal project focused on building a **high-performance screen recording system** in modern C++ (C++17/20), using low-level system APIs and high-efficiency libraries.
 
-The goal is not to create a production-ready tool, but to apply and internalize **idiomatic C++**, **RAII**, **STL usage**, **multithreading**, **networking**, and **systems-level design patterns** in a real, evolving project.
+---
 
-### 🔍 Objectives
+## ✅ Current Capabilities
 
-- Practice **idiomatic C++ design** with clear ownership and safe memory management.
-- Apply **RAII** principles consistently and eliminate raw resource handling.
-- Use **standard containers**, **algorithms**, and **smart pointers** appropriately.
-- Build components with **multithreading** and **networking** in mind.
-- Structure the code to reflect **real-world software engineering habits**.
+- ⚡ **Ultra-fast screen capture** via **Desktop Duplication API (DDAPI)**  
+  This is the most efficient method available for Windows screen capture. It provides **direct access to GPU memory**, minimizing latency and resource usage.
 
-### 🔧 Planned Capabilities
+- ⚡ **High-speed JPEG compression** using **libjpeg-turbo**  
+  Raw bitmaps are compressed using one of the **fastest JPEG encoders available** — there is **no faster open-source alternative**.
 
-- Screen capture using low-level system APIs.
-- Future: **capture system audio and microphone input** (if available).
-- Future: **mouse cursor overlay**.
-- Future: **transmit captured frames over the network**.
+---
 
-> 🧠 This project is a self-contained exercise in writing clear, robust, idiomatic C++ code — with the intent to go beyond theory and actually **build** something while learning.
->
-> ⏳ Expected timeline: ~2–3 weeks of focused development.
+## 🛠 Planned Features
+
+- 🎙️ Capture **system audio and microphone input** (if supported)
+- 🖱️ Overlay the **mouse cursor**
+- 🌐 **Transmit frames over the network** (e.g. to a server or client)
+
+---
+
+## 🎯 Project Goals
+
+- Apply **idiomatic modern C++** design (RAII, smart pointers, STL containers)
+- Build components with **multithreading** and **networking** in mind
+- Practice **real-world systems-level design** patterns
+- Focus on **performance-first** architecture
+
+---
+
+> 🧪 This project is a hands-on exercise in writing clean, robust, high-performance modern C++ code — intended to go beyond theory and actually build something meaningful.
+
+⏳ **Estimated development time**: ~2–3 weeks of focused work.
