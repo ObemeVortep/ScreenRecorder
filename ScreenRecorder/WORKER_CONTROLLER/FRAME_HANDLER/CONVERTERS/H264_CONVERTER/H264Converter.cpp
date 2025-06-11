@@ -1,8 +1,8 @@
 #include "H264Converter.h"
 
 // Constructor
-H264Converter::H264Converter(std::shared_ptr<DIRECTX12_SHARED> spDirectX12Shared, std::shared_ptr<SharedDX11On12Texture2D> spSharedDX11On12Texture2D, std::shared_ptr<SharedQueue<std::vector<unsigned char>>> spProcessedFrames)
-	: spDirectX12Shared(spDirectX12Shared), spSharedDX11On12Texture2D(spSharedDX11On12Texture2D), spProcessedFrames(spProcessedFrames),
+H264Converter::H264Converter(std::shared_ptr<DIRECTX12_SHARED> spDirectX12Shared, std::shared_ptr<SharedDX11On12Texture2D> spSharedDX11On12Texture2D)
+	: spDirectX12Shared(spDirectX12Shared), spSharedDX11On12Texture2D(spSharedDX11On12Texture2D),
 		uiCurrentFrameIndex(0), iWidth(0), iHeight(0),																		
 			hNvEncodeDll(NULL), pEncoder(NULL), pInputBuffer(NULL), pOutputBuffer(NULL), pRegisteredInputBuffer(NULL), pRegisteredOutputBuffer(NULL)
 {

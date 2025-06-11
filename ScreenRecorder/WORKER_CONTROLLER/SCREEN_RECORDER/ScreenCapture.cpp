@@ -1,7 +1,5 @@
 #include "ScreenRecorder.h"
 
-#include <iostream>
-
 // For ComPtr smart pointer wrapper
 #include <wrl/client.h>
 using Microsoft::WRL::ComPtr;
@@ -17,9 +15,9 @@ void ScreenRecorder::StartThread() {
 		spSharedDX11On12Texture2D->WaitAndUseD11();
 
 		// Attempt to capture a single screenshot
-		if (GetFrame(vFrameData)) {
-			//pRecordedData->Push(vFrameData);
-		}
+		// Can return false, but we can ignore it
+		GetFrame(vFrameData);
+
 		// After we got the frame, we must notify FrameHandler that he can work with D3D12Resource
 		spSharedDX11On12Texture2D->NotifyEndD11();
 
@@ -53,47 +51,10 @@ bool ScreenRecorder::GetFrame(std::vector<BYTE>& vFrameData) {
 		return false;
 	}
 
-	// Prepare a CPU-accessible texture description
-	D3D11_TEXTURE2D_DESC desc;
-	GpuTex2D->GetDesc(&desc);
-	desc.CPUAccessFlags = D3D11_CPU_ACCESS_READ;
-	desc.Usage = D3D11_USAGE_STAGING;
-	desc.BindFlags = 0;
-	desc.MiscFlags = 0;
-
-	// Attempt to create the CPU texture
-	ComPtr<ID3D11Texture2D> CpuTex2D;
-	hr = spDirectX11Shared->cpDevice.Get()->CreateTexture2D(&desc, nullptr, CpuTex2D.GetAddressOf());
-	if (FAILED(hr)) {
-		return false;
-	}
-
-	// Attempt to open shared resource (wrapped ID3D12Resource)
+	// Ñopy raw BGRA data to our wrapped D3D12Resource
 	spDirectX11Shared->cpContext.Get()->CopyResource(SharedTex.Get(), GpuTex2D.Get());
 
-	// Copy the GPU texture to the CPU texture
-	spDirectX11Shared->cpContext.Get()->CopyResource(CpuTex2D.Get(), SharedTex.Get());
-
-	// Map the CPU texture to access its pixel data
-	D3D11_MAPPED_SUBRESOURCE MappedData;
-	hr = spDirectX11Shared->cpContext.Get()->Map(CpuTex2D.Get(), 0, D3D11_MAP_READ, 0, &MappedData);
-	if (FAILED(hr)) {
-		return false;
-	}
-
-	// Copy the pixel data into vFrameData, row by row (accounting for RowPitch)
-	BYTE* pSrc = reinterpret_cast<BYTE*>(MappedData.pData);
-	BYTE* pDst = vFrameData.data();
-	for (int y = 0; y < iHeight; y++) {
-		std::memcpy(
-			pDst + (y * iWidth * 4),
-			pSrc + (y * MappedData.RowPitch),
-			iWidth * 4
-		);
-	}
-
-	// Unmap the texture and release the acquired frame
-	spDirectX11Shared->cpContext.Get()->Unmap(CpuTex2D.Get(), 0);
+	// Release frame after that
 	cpDeskDupl.Get()->ReleaseFrame();
 
 	return true;

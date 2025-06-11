@@ -25,7 +25,7 @@ using Microsoft::WRL::ComPtr;
 class H264Converter : public IConverter {
 public:
 	// Constructor
-	H264Converter(std::shared_ptr<DIRECTX12_SHARED> spDirectX12Shared, std::shared_ptr<SharedDX11On12Texture2D> spSharedDX11On12Texture2D, std::shared_ptr<SharedQueue<std::vector<unsigned char>>> spProcessedFrames);
+	H264Converter(std::shared_ptr<DIRECTX12_SHARED> spDirectX12Shared, std::shared_ptr<SharedDX11On12Texture2D> spSharedDX11On12Texture2D);
 	// Destructor 
 	~H264Converter();
 
@@ -96,11 +96,6 @@ private:
 	// Connectors between RECORDER <-> HANDLER
 	// ScreenRecorder -> FrameHandler
 	std::shared_ptr<SharedDX11On12Texture2D> spSharedDX11On12Texture2D;
-
-private:
-	// Connectors between HANDLER -> VIDEO_CREATOR
-	// FrameHandler -> VideoCreator
-	std::shared_ptr<SharedQueue<std::vector<unsigned char>>> spProcessedFrames;
 
 private:
 	// Variables that use while encoding

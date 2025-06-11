@@ -2,8 +2,8 @@
 
 // Constructor
 FrameHandler::FrameHandler(std::shared_ptr<DIRECTX12_SHARED> spDirectX12Shared, std::shared_ptr<SharedDX11On12Texture2D> spSharedDX11On12Texture2D, std::shared_ptr<SharedQueue<std::vector<unsigned char>>> spProcessedFrames)
-	: spSharedDX11On12Texture2D(spSharedDX11On12Texture2D),
-		H264Converter(spDirectX12Shared, spSharedDX11On12Texture2D, spProcessedFrames)
+	: spSharedDX11On12Texture2D(spSharedDX11On12Texture2D), spProcessedFrames(spProcessedFrames),
+		H264Converter(spDirectX12Shared, spSharedDX11On12Texture2D)
 			{ }
 
 // Destructor

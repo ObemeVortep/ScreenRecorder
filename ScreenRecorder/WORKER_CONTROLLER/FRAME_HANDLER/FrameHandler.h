@@ -33,7 +33,13 @@ public:
 private:
     // Connectors between RECORDER -> HANDLER
     // ScreenRecorder -> FrameHandler
+    // Must be forwarded to H264Converter for optimizing!
     std::shared_ptr<SharedDX11On12Texture2D> spSharedDX11On12Texture2D;
+
+private:
+    // Connectors between HANDLER -> VIDEO_CREATOR
+    // FrameHandler -> VideoCreator
+    std::shared_ptr<SharedQueue<std::vector<unsigned char>>> spProcessedFrames;
 
 private:
     // Variables

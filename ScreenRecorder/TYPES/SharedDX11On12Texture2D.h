@@ -4,8 +4,6 @@
 #include "TYPES/DirectXShared.h"
 #include <dxgi1_2.h>
 
-#include <iostream>
-
 #include <condition_variable>
 #include <mutex>
 #include <atomic>
