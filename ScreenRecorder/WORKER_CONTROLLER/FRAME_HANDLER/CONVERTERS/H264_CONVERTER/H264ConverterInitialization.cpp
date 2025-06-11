@@ -266,13 +266,11 @@ int H264Converter::InitializeHardwareEncoderSession() {
 int H264Converter::RegisterBuffers() {
 	/* Step 1: register input buffer */
 	if (RegisterInputBuffer() != 0) {
-		std::cerr << "INPUT PROBLEM" << std::endl;
 		return -1;
 	}
 
 	/* Step 1: register output buffer */
 	if (RegisterOutputBuffer() != 0) {
-		std::cerr << "OUTPUT PROBLEM" << std::endl;
 		return -2;
 	}
 
@@ -330,7 +328,6 @@ int H264Converter::RegisterInputBuffer() {
 	nvStatus = upNvFuncList->nvEncRegisterResource(pEncoder, upNvRegRes.get());
 	if (NVFAILED(nvStatus)) {
 		// Failed to register input buffer in NVIDIA NVENC
-		std::cerr << "NVSTATUS: 0x" << nvStatus << std::endl;
 		return -3;
 	}
 

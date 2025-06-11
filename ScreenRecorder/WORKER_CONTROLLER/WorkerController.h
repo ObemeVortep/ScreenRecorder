@@ -23,21 +23,18 @@ public:
 	// Initialize WorkerController
 	int Initialize();
 
-	// Starts all recorder threads and waits for their initialization
-	unsigned int StartThreads();
+	// Starts all pairs that were successfully initialized
+	void StartThreads();
 
 private:
-	// Internal helper functions
+	// Start separate thread using IWorker pointer and jthread reference
+	void StartThread(IWorker* pWorker, std::jthread& thread);
 
-	// Tries to start the thread
-	unsigned int TryToStartThread(std::jthread& NewThread, IWorker* pWorker);
-
-	// Initializes and starts a recorder in a separate thread
-	void StartThread(
-		IWorker* pWorker,
-		std::atomic<bool>& isInitOver,
-		std::atomic<bool>& isInitSuccessful
-	);
+private:
+	// Internal state fields
+	// This bit-field means pairs that could be started together
+	// 0x01: ScreenRecorder <-> FrameHandler
+	uint32_t uiPairsInited;
 
 private:
 	// Connectors between RECORDER -> HANDLER

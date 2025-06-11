@@ -16,17 +16,20 @@ int main() {
 
 	// WorkerController manages all data collection threads for video creation
 	WorkerController WorkerController(DirectXManager.GetDirectX12Shared(), DirectXManager.GetDirectX11On12Shared(), DirectXManager.GetDirectX11Shared());
-	if (WorkerController.Initialize() != 0) {
-		// Failed to initialize WorkerController
+
+	// Initializes threads and returns pre-defined value, that means which thread could be started
+	unsigned int uiInitedThreads = WorkerController.Initialize();
+	if (uiInitedThreads == 0) {
+		// Failed to initialize at least one recorder<->handler pair in WorkerController
 		return -2;
 	}
+	// Starts threads that were successfully initialized earlier.
+	WorkerController.StartThreads();
 
-	unsigned int uiActiveThreads = WorkerController.StartThreads();
-
-	std::cout << "uiActiveThreads: " << uiActiveThreads << std::endl;
+	std::cout << "uiInitedThreads: " << uiInitedThreads << std::endl;
 
 	// VideoCreator creates video from VideoPipelineBuffer data in real time
-	VideoCreator VideoCreator(&VideoPipelineBuffer, uiActiveThreads);
+	VideoCreator VideoCreator(&VideoPipelineBuffer, uiInitedThreads);
 	VideoCreator.StartVideoCreation();
 
 	while (true) {
