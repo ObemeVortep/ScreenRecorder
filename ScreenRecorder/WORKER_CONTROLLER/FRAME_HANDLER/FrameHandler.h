@@ -1,7 +1,7 @@
 #ifndef FRAME_HANDLER_H
 #define FRAME_HANDLER_H
 
-#include "INTERFACES/IHandler.h"
+#include "INTERFACES/IWorker.h"
 
 #include "TYPES/DirectXShared.h"
 
@@ -14,10 +14,10 @@
 #define HEIGHT	1080		// We will get it dynamic in future
 
 // This class converts raw data from DDAPI to jpeg and save it into pProcessedData
-class FrameHandler : public IHandler {
+class FrameHandler : public IWorker {
 public:
 	// Constructor
-	FrameHandler(std::shared_ptr<DIRECTX12_SHARED> spDirectX12Shared, std::shared_ptr<SharedDX11On12Texture2D> spSharedDX11On12Texture2D, SharedQueue<std::vector<unsigned char>>* pProcessedData, SharedQueue<std::vector<unsigned char>>* pRecordedData);
+	FrameHandler(std::shared_ptr<DIRECTX12_SHARED> spDirectX12Shared, std::shared_ptr<SharedDX11On12Texture2D> spSharedDX11On12Texture2D, std::shared_ptr<SharedQueue<std::vector<unsigned char>>> spProcessedFrames);
 	// Destructor
 	~FrameHandler();
 
@@ -31,7 +31,7 @@ public:
     void EndRequest() override;
 
 private:
-    // Connectors between RECORDER <-> HANDLER
+    // Connectors between RECORDER -> HANDLER
     // ScreenRecorder -> FrameHandler
     std::shared_ptr<SharedDX11On12Texture2D> spSharedDX11On12Texture2D;
 

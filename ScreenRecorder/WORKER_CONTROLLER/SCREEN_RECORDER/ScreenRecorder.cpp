@@ -1,11 +1,10 @@
 #include "ScreenRecorder.h"
 
 // Constructor – initializes all member variables
-ScreenRecorder::ScreenRecorder(std::shared_ptr<DIRECTX11ON12_SHARED> spDirectX11On12Shared, std::shared_ptr<DIRECTX11_SHARED> spDirectX11Shared, std::shared_ptr<SharedDX11On12Texture2D> spSharedDX11On12Texture2D, SharedQueue<std::vector<unsigned char>>* pRecordedData)
+ScreenRecorder::ScreenRecorder(std::shared_ptr<DIRECTX11ON12_SHARED> spDirectX11On12Shared, std::shared_ptr<DIRECTX11_SHARED> spDirectX11Shared, std::shared_ptr<SharedDX11On12Texture2D> spSharedDX11On12Texture2D)
 	: spDirectX11On12Shared(spDirectX11On12Shared), spDirectX11Shared(spDirectX11Shared), spSharedDX11On12Texture2D(spSharedDX11On12Texture2D),
-		 iWidth(0), iHeight(0),
-			IRecorder(pRecordedData)
-				{ }
+		 iWidth(0), iHeight(0)
+			{ }
 
 // Destructor
 ScreenRecorder::~ScreenRecorder() 

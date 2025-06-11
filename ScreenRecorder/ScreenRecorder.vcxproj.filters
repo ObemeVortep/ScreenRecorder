@@ -113,12 +113,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="INTERFACES\IRecorder.h">
-      <Filter>Файлы заголовков\INTERFACES</Filter>
-    </ClInclude>
-    <ClInclude Include="INTERFACES\IHandler.h">
-      <Filter>Файлы заголовков\INTERFACES</Filter>
-    </ClInclude>
     <ClInclude Include="WORKER_CONTROLLER\WorkerController.h">
       <Filter>Файлы заголовков\WORKER_CONTROLLER</Filter>
     </ClInclude>

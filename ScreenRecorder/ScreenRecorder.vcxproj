@@ -37,8 +37,6 @@
   <ItemGroup>
     <ClInclude Include="DIRECTX_MANAGER\DirectXManager.h" />
     <ClInclude Include="INTERFACES\IConverter.h" />
-    <ClInclude Include="INTERFACES\IHandler.h" />
-    <ClInclude Include="INTERFACES\IRecorder.h" />
     <ClInclude Include="INTERFACES\IWorker.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="TYPES\DirectXShared.h" />

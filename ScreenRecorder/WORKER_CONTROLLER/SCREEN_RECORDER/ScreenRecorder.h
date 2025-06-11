@@ -1,7 +1,7 @@
 #ifndef SCREEN_RECORDER_H
 #define SCREEN_RECORDER_H
 
-#include "INTERFACES/IRecorder.h"
+#include "INTERFACES/IWorker.h"
 
 #include "TYPES/DirectXShared.h"
 #include "TYPES/SharedDX11On12Texture2D.h"
@@ -19,10 +19,10 @@ using Microsoft::WRL::ComPtr;
 #define HEIGHT              1080    // Metrics
 
 // Class that captures the screen
-class ScreenRecorder : public IRecorder {
+class ScreenRecorder : public IWorker {
 public:
     // Constructor
-    ScreenRecorder(std::shared_ptr<DIRECTX11ON12_SHARED> spDirectX11On12Shared, std::shared_ptr<DIRECTX11_SHARED> spDirectX11Shared, std::shared_ptr<SharedDX11On12Texture2D> spSharedDX11On12Texture2D, SharedQueue<std::vector<unsigned char>>* pRecordedData);
+    ScreenRecorder(std::shared_ptr<DIRECTX11ON12_SHARED> spDirectX11On12Shared, std::shared_ptr<DIRECTX11_SHARED> spDirectX11Shared, std::shared_ptr<SharedDX11On12Texture2D> spSharedDX11On12Texture2D);
 
     // Destructor
     ~ScreenRecorder();
@@ -52,7 +52,7 @@ private:
     std::shared_ptr<DIRECTX11_SHARED> spDirectX11Shared;
 
 private:
-    // Connectors between RECORDER <-> HANDLER
+    // Connectors between RECORDER -> HANDLER
     // ScreenRecorder -> FrameHandler
     std::shared_ptr<SharedDX11On12Texture2D> spSharedDX11On12Texture2D;
 

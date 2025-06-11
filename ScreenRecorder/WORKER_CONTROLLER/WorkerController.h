@@ -40,11 +40,14 @@ private:
 	);
 
 private:
-	// Connectors between RECORDER <-> HANDLER
+	// Connectors between RECORDER -> HANDLER
 	// ScreenRecorder -> FrameHandler
 	std::shared_ptr<SharedDX11On12Texture2D> spSharedDX11On12Texture2D;
-	SharedQueue<std::vector<unsigned char>> RecordedFrames;
 
+private:
+	// Connectors between HANDLER -> VIDEO_CREATOR
+	// FrameHandler -> VideoCreator
+	std::shared_ptr<SharedQueue<std::vector<unsigned char>>> spProcessedFrames;
 private:
 	// Recorder instances with their thread handles
 	ScreenRecorder ScreenRecorder;
@@ -53,7 +56,6 @@ private:
 	// Handler instances with their thread handles and processed queues
 	FrameHandler FrameHandler;
 	std::jthread FrameHandlerThread;
-	SharedQueue<std::vector<unsigned char>> ProcessedFrames;
 };
 
 #endif // WORKER_CONTROLLER_H

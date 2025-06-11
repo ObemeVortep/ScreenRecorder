@@ -5,6 +5,7 @@
 
 #include "TYPES/DirectXShared.h"
 #include "TYPES/SharedDX11On12Texture2D.h"
+#include "TYPES/SharedQueue.h"
 
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
@@ -24,7 +25,7 @@ using Microsoft::WRL::ComPtr;
 class H264Converter : public IConverter {
 public:
 	// Constructor
-	H264Converter(std::shared_ptr<DIRECTX12_SHARED> spDirectX12Shared, std::shared_ptr<SharedDX11On12Texture2D> spSharedDX11On12Texture2D);
+	H264Converter(std::shared_ptr<DIRECTX12_SHARED> spDirectX12Shared, std::shared_ptr<SharedDX11On12Texture2D> spSharedDX11On12Texture2D, std::shared_ptr<SharedQueue<std::vector<unsigned char>>> spProcessedFrames);
 	// Destructor 
 	~H264Converter();
 
@@ -95,6 +96,11 @@ private:
 	// Connectors between RECORDER <-> HANDLER
 	// ScreenRecorder -> FrameHandler
 	std::shared_ptr<SharedDX11On12Texture2D> spSharedDX11On12Texture2D;
+
+private:
+	// Connectors between HANDLER -> VIDEO_CREATOR
+	// FrameHandler -> VideoCreator
+	std::shared_ptr<SharedQueue<std::vector<unsigned char>>> spProcessedFrames;
 
 private:
 	// Variables that use while encoding
