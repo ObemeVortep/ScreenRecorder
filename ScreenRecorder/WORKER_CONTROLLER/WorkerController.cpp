@@ -15,14 +15,19 @@ WorkerController::~WorkerController() {
 }
 
 // Initialize WorkerController
-int WorkerController::Initialize() {
+VideoPipelineBuffer WorkerController::Initialize() {
+	// VideoPipelineBuffer, which is used as a data stream to create the video (and also contains important information for initialization)
+	VideoPipelineBuffer videoPipelineBuffer;
+
 	// RECORDERS MUST BE INITIALIZED BEFORE HANDLERS
 	// Try to initialize first pair ScreenRecorder <-> FrameHandler
 	if (ScreenRecorder.Initialize() == 0) {
 		if (FrameHandler.Initialize() == 0) {
 			uiPairsInited += 0x01;
+			videoPipelineBuffer.spProcessedFrames = spProcessedFrames;
 		}
 	}
+	videoPipelineBuffer.SetInitedPairs(uiPairsInited);
 
-	return uiPairsInited;
+	return videoPipelineBuffer;
 }

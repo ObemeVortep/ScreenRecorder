@@ -21,7 +21,7 @@ public:
 	~WorkerController();
 
 	// Initialize WorkerController
-	int Initialize();
+	VideoPipelineBuffer Initialize();
 
 	// Starts all pairs that were successfully initialized
 	void StartThreads();

@@ -1,5 +1,5 @@
 #include "VideoCreator.h"
 
-void VideoCreator::StartVideoCreation() {
-
+int VideoCreator::Initialize() {
+	return 0;
 }
