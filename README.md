@@ -7,7 +7,7 @@ This repository documents a personal project focused on building a **high-perfor
 ## ✅ Current Capabilities
 
 * ⚡ **GPU-only screen capture pipeline**
-  Uses **Desktop Duplication API (DDAPI)** to read the frame buffer **directly from GPU memory**, then leverages **DX11On12 interop** to pass that texture straight into **NVIDIA NVENC**. The entire path — capture → transfer → H.264 encode — happens **without touching the CPU**, delivering the highest possible throughput and the lowest latency.
+  Uses **Desktop Duplication API (DDAPI)** to read the frame buffer **directly from GPU memory**, then leverages **DX11On12 interop** to pass that texture straight into **NVIDIA NVENC**. The entire path - capture -> transfer -> H.264 encode - happens **without touching the CPU**, delivering the highest possible throughput and the lowest latency.
 
 * ⚡ **Ultra-fast screen capture (DDAPI)**
   DDAPI remains the most efficient capture method on Windows and is the backbone of the pipeline above.
