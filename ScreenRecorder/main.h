@@ -3,7 +3,7 @@
 
 #include "DIRECTX_MANAGER/DirectXManager.h"
 #include "TYPES/VideoPipelineBuffer.h"
-#include "WORKER_CONTROLLER/WorkerController.h"
+#include "MAIN_CONTROLLER/MainController.h"
 #include "VIDEO_CREATOR/VideoCreator.h"
 
 // For timeBeginPeriod(1) 

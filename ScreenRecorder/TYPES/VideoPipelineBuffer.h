@@ -6,22 +6,23 @@
 
 class VideoPipelineBuffer {
 public:
-	VideoPipelineBuffer() : uiInitedPairs(0) { }
+	VideoPipelineBuffer() : uiInitedControllers(0) { }
 
 	// Set bit-field of inited pairs of Recorder-Handler threads
-	inline void SetInitedPairs(uint32_t uiNewInitedPairs) {
-		uiInitedPairs = uiNewInitedPairs;
+	inline void SetInitedControllers(uint32_t uiNewInitedPairs) {
+		uiInitedControllers = uiNewInitedPairs;
 	}
 	// Get bit-field of inited pairs of Recorder-Handler  threads
-	inline uint32_t GetInitedPairs() {
-		return uiInitedPairs;
+	inline uint32_t GetInitedControllers() {
+		return uiInitedControllers;
 	}
 
 public:
+	// ScreenWorkerController works with videoPipelineBuffer.spProcessedFrames
 	std::shared_ptr<SharedQueue<std::vector<unsigned char>>> spProcessedFrames;
 
 private:
-	uint32_t uiInitedPairs;
+	uint32_t uiInitedControllers;
 };
 
 #endif // VIDEO_PIPELINE_BUFFER_H

@@ -1,6 +1,5 @@
 #include "VideoCreator.h"
 
-#include <iostream>
 #include <fstream>
 #include <string>
 

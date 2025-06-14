@@ -4,7 +4,7 @@
 #include "INTERFACES/IConverter.h"
 
 // For RGBA to JPEG convertion. Decided to use static for better optimization.
-#pragma comment (lib, "WORKER_CONTROLLER/FRAME_HANDLER/CONVERTERS/JPEG_CONVERTER/libjpeg-turbo/turbojpeg-static.lib")   
+#pragma comment (lib, "MAIN_CONTROLLER/SCREEN_WORKER_CONTROLLER/FRAME_HANDLER/CONVERTERS/JPEG_CONVERTER/libjpeg-turbo/turbojpeg-static.lib")   
 
 class JpegConverter : public IConverter {
 public:

@@ -3,6 +3,7 @@
 #include <iostream>
 
 int main() {
+	// Essential for accurate sleep times 
 	timeBeginPeriod(1);
 
 	// It optimizes DirectX usage for ScreenRecorder and FrameHandler
@@ -13,13 +14,13 @@ int main() {
 		return -1;
 	}
 
-	// workerController manages all data collection threads for video creation
-	WorkerController workerController(directXManager.GetDirectX12Shared(), directXManager.GetDirectX11On12Shared(), directXManager.GetDirectX11Shared());
+	// mainController manages all data collection threads for video creation
+	MainController mainController(directXManager.GetDirectX12Shared(), directXManager.GetDirectX11On12Shared(), directXManager.GetDirectX11Shared());
 
 	// Initializes threads and returns videoPipelineBuffer, which is used as a data stream to create the video (and also contains important information for initialization)
-	VideoPipelineBuffer videoPipelineBuffer = workerController.Initialize();
-	if (videoPipelineBuffer.GetInitedPairs() == 0) {
-		// Failed to initialize at least one recorder<->handler pair in workerController
+	VideoPipelineBuffer videoPipelineBuffer = mainController.Initialize();
+	if (videoPipelineBuffer.GetInitedControllers() == 0) {
+		// Failed to initialize at least one recorder<->handler pair in mainController
 		return -2;
 	}
 
@@ -35,7 +36,7 @@ int main() {
 	videoCreator.StartVideoCreation();
 
 	// Start all screen recording streams only after all dependencies have been initialized
-	workerController.StartThreads();
+	mainController.StartThreads();
 
 	std::cout << "Threads started" << std::endl;
 
