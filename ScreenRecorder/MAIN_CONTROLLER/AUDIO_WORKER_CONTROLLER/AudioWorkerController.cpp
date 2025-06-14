@@ -2,9 +2,9 @@
 
 // Contstructor
 AudioWorkerController::AudioWorkerController()
-	: spRecordedSysAudio(std::make_shared<AudioRecordedData<std::vector<unsigned char>>>()), sysAudioRecorder(spRecordedSysAudio, eRender),
-	  spRecordedMicAudio(std::make_shared<AudioRecordedData<std::vector<unsigned char>>>()), micAudioRecorder(spRecordedMicAudio, eCapture),
-		spProcessedAudio(std::make_shared<SharedQueue<std::vector<unsigned char>>>())
+	: spRecordedSysAudio(std::make_shared<AudioRecordedData<std::vector<unsigned char>>>()),	sysAudioRecorder(spRecordedSysAudio, eRender),
+	  spRecordedMicAudio(std::make_shared<AudioRecordedData<std::vector<unsigned char>>>()),	micAudioRecorder(spRecordedMicAudio, eCapture),
+	  spProcessedAudio(std::make_shared<SharedQueue<std::vector<unsigned char>>>()),			audioHandler(spRecordedSysAudio, spRecordedMicAudio, spProcessedAudio)
 			{ }
 
 // Destructor
