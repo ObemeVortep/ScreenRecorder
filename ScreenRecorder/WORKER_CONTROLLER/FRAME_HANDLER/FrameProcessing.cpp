@@ -2,9 +2,7 @@
 
 // Start thread, that will process the frame queue
 void FrameHandler::StartThread() {
-	static int i = 0;
-	// Define a vector for raw and H.264 frame
-	std::vector<unsigned char> vRawFrame;
+	// Define a vector for encoded H.264 frame
 	std::vector<unsigned char> vH264Frame;
 
 	// Infinity loop of processing frames

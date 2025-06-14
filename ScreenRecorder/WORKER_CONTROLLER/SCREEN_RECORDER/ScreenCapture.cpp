@@ -1,5 +1,8 @@
 #include "ScreenRecorder.h"
 
+// For time-stamps
+#include <chrono>
+
 // For ComPtr smart pointer wrapper
 #include <wrl/client.h>
 using Microsoft::WRL::ComPtr;
@@ -8,9 +11,15 @@ using Microsoft::WRL::ComPtr;
 void ScreenRecorder::StartThread() {
 	// Create a buffer matching the screen size
 	std::vector<BYTE> vFrameData(iWidth * iHeight * 4);
+	
+	// We must capture a frame every 16666700 nanoseconds (60 FPS)
+	constexpr auto kTargetFrameInterval = std::chrono::nanoseconds(16666700);
 
 	// Make 1FPS stream
 	while (true) {
+		// Record the time we started screen capture
+		auto start = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::high_resolution_clock::now().time_since_epoch());
+
 		// Wait untill we can use D11 Resource for screen capture
 		spSharedDX11On12Texture2D->WaitAndUseD11();
 
@@ -21,7 +30,21 @@ void ScreenRecorder::StartThread() {
 		// After we got the frame, we must notify FrameHandler that he can work with D3D12Resource
 		spSharedDX11On12Texture2D->NotifyEndD11();
 
-		std::this_thread::sleep_for(std::chrono::milliseconds(1000 / FRAMES_PER_SECOND));
+		// Record the time we ended screen capture
+		auto end = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::high_resolution_clock::now().time_since_epoch());
+
+		// Calculate how long the frame took
+		auto elapsed = end - start;
+
+		// Sleep if the frame was faster than the target interval
+		if (elapsed < kTargetFrameInterval - std::chrono::microseconds(2000)) {
+			std::this_thread::sleep_for((kTargetFrameInterval - elapsed) - std::chrono::microseconds(1000));
+		}
+
+		// Spin for final precision
+		while (std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::high_resolution_clock::now().time_since_epoch()) - start < kTargetFrameInterval) {
+			std::this_thread::yield(); // or just busy wait
+		}
 	}
 
 	return;

@@ -3,12 +3,14 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
-# Photo formats
+# Photo/Video formats
 *.raw
 *.png
 *.jpeg
 *.jpg
 *.bmp
+*.h264
+*.mp4
 
 # User-specific files
 *.rsuser
