@@ -1,21 +1,22 @@
-#include "SysAudioRecorder.h"
+#include "AudioRecorder.h"
 
-// Constructor implementation
-SysAudioRecorder::SysAudioRecorder(std::shared_ptr<SharedQueue<std::vector<unsigned char>>> spRecordedSysAudio) 
-	: spRecordedSysAudio(spRecordedSysAudio), 
+// Constructor
+AudioRecorder::AudioRecorder(std::shared_ptr<AudioRecordedData<std::vector<unsigned char>>> spRecordedAudio, EDataFlow eType)
+	: spRecordedAudio(spRecordedAudio), deviceType(eType),
 		pWaveFormat(NULL)
 			{ }
 
-// Destructor implementation
-SysAudioRecorder::~SysAudioRecorder() {
+// Destructor
+AudioRecorder::~AudioRecorder() {
 	if (pWaveFormat) {
 		// pWaveFormat must be cleaned using CoTaskMemFree()
 		CoTaskMemFree(pWaveFormat);
 	}
 }
 
-// Initialize SysAudioRecorder instances
-int SysAudioRecorder::Initialize() {
+
+// Initialize AudioRecorder instances
+int AudioRecorder::Initialize() {
 	HRESULT hr;
 
 	/* Step 1: get IMMDevice Enumerator */
@@ -32,15 +33,15 @@ int SysAudioRecorder::Initialize() {
 		return -1;
 	}
 
-	/* Step 2: get default endpoint render device (system audio) */
-	hr = cpDeviceEnumerator.Get()->GetDefaultAudioEndpoint(eRender, eConsole, cpRenderDevice.GetAddressOf());
+	/* Step 2: get default endpoint audio device */
+	hr = cpDeviceEnumerator.Get()->GetDefaultAudioEndpoint(deviceType, eConsole, cpDevice.GetAddressOf());
 	if (FAILED(hr)) {
-		// Failed to get default render device (system audio)
+		// Failed to get default audio device 
 		return -2;
 	}
 
 	/* Step 3: activate audio client */
-	hr = cpRenderDevice->Activate(
+	hr = cpDevice->Activate(
 		__uuidof(IAudioClient),
 		CLSCTX_ALL,
 		NULL,
@@ -51,17 +52,20 @@ int SysAudioRecorder::Initialize() {
 		return -3;
 	}
 
-	/* Step 4: get mix format of system audio */
+	/* Step 4: get mix format of audio */
 	hr = cpAudioClient->GetMixFormat(&pWaveFormat);
 	if (FAILED(hr)) {
-		// Failed to get mix format of system audio
+		// Failed to get mix format of audio
 		return -4;
 	}
 
 	/* Step 5: initialize audio client */
+	// Define if loopback needed
+	DWORD dwFlags = (deviceType == eRender) ? AUDCLNT_STREAMFLAGS_LOOPBACK : 0;
+
 	hr = cpAudioClient->Initialize(
 		AUDCLNT_SHAREMODE_SHARED,
-		AUDCLNT_STREAMFLAGS_LOOPBACK,
+		dwFlags,
 		(10 * 1000 * 1000),				// Buffer duration in 100ns-units.
 		0,
 		pWaveFormat,
@@ -72,12 +76,15 @@ int SysAudioRecorder::Initialize() {
 		return -5;
 	}
 
-	/* Step 6: get a capture audio client for recording system audio */
+	/* Step 6: get a capture audio client for recording audio */
 	hr = cpAudioClient->GetService(__uuidof(IAudioCaptureClient), reinterpret_cast<void**>(cpAudioCaptureClient.GetAddressOf()));
 	if (FAILED(hr)) {
-		// Failed to get a capture audio client for recording system audio
+		// Failed to get a capture audio client for recording audio
 		return -6;
 	}
+
+	/* Step 7: initialize WAVEFORMAT in spRecordedAudio */
+	spRecordedAudio->SetAudioFormat(pWaveFormat);
 
 	return 0;
 }

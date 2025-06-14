@@ -21,6 +21,11 @@
   <ItemGroup>
     <ClCompile Include="DIRECTX_MANAGER\DirectXManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MAIN_CONTROLLER\AUDIO_WORKER_CONTROLLER\AudioWorkerController.cpp" />
+    <ClCompile Include="MAIN_CONTROLLER\AUDIO_WORKER_CONTROLLER\AUDIO_HANDLER\AudioHandler.cpp" />
+    <ClCompile Include="MAIN_CONTROLLER\AUDIO_WORKER_CONTROLLER\AUDIO_HANDLER\AudioProcessing.cpp" />
+    <ClCompile Include="MAIN_CONTROLLER\AUDIO_WORKER_CONTROLLER\AUDIO_RECORDER\AudioCapture.cpp" />
+    <ClCompile Include="MAIN_CONTROLLER\AUDIO_WORKER_CONTROLLER\AUDIO_RECORDER\AudioRecorder.cpp" />
     <ClCompile Include="MAIN_CONTROLLER\MainController.cpp" />
     <ClCompile Include="MAIN_CONTROLLER\SCREEN_WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS\H264_CONVERTER\H264Convert.cpp" />
     <ClCompile Include="MAIN_CONTROLLER\SCREEN_WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS\H264_CONVERTER\H264Converter.cpp" />
@@ -31,11 +36,6 @@
     <ClCompile Include="MAIN_CONTROLLER\SCREEN_WORKER_CONTROLLER\ScreenWorkerController.cpp" />
     <ClCompile Include="MAIN_CONTROLLER\SCREEN_WORKER_CONTROLLER\SCREEN_RECORDER\ScreenCapture.cpp" />
     <ClCompile Include="MAIN_CONTROLLER\SCREEN_WORKER_CONTROLLER\SCREEN_RECORDER\ScreenRecorder.cpp" />
-    <ClCompile Include="MAIN_CONTROLLER\SYSAUDIO_WORKER_CONTROLLER\SysAudioWorkerController.cpp" />
-    <ClCompile Include="MAIN_CONTROLLER\SYSAUDIO_WORKER_CONTROLLER\SYSAUDIO_HANDLER\SysAudioHandler.cpp" />
-    <ClCompile Include="MAIN_CONTROLLER\SYSAUDIO_WORKER_CONTROLLER\SYSAUDIO_HANDLER\SysAudioProcessing.cpp" />
-    <ClCompile Include="MAIN_CONTROLLER\SYSAUDIO_WORKER_CONTROLLER\SYSAUDIO_RECORDER\SysAudioCapture.cpp" />
-    <ClCompile Include="MAIN_CONTROLLER\SYSAUDIO_WORKER_CONTROLLER\SYSAUDIO_RECORDER\SysAudioRecorder.cpp" />
     <ClCompile Include="VIDEO_CREATOR\VideoCreation.cpp" />
     <ClCompile Include="VIDEO_CREATOR\VideoCreator.cpp" />
   </ItemGroup>
@@ -45,6 +45,9 @@
     <ClInclude Include="INTERFACES\IWorker.h" />
     <ClInclude Include="INTERFACES\IWorkerController.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="MAIN_CONTROLLER\AUDIO_WORKER_CONTROLLER\AudioWorkerController.h" />
+    <ClInclude Include="MAIN_CONTROLLER\AUDIO_WORKER_CONTROLLER\AUDIO_HANDLER\AudioHandler.h" />
+    <ClInclude Include="MAIN_CONTROLLER\AUDIO_WORKER_CONTROLLER\AUDIO_RECORDER\AudioRecorder.h" />
     <ClInclude Include="MAIN_CONTROLLER\MainController.h" />
     <ClInclude Include="MAIN_CONTROLLER\SCREEN_WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS\H264_CONVERTER\H264Concepts.h" />
     <ClInclude Include="MAIN_CONTROLLER\SCREEN_WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS\H264_CONVERTER\H264Converter.h" />
@@ -52,9 +55,7 @@
     <ClInclude Include="MAIN_CONTROLLER\SCREEN_WORKER_CONTROLLER\FRAME_HANDLER\FrameHandler.h" />
     <ClInclude Include="MAIN_CONTROLLER\SCREEN_WORKER_CONTROLLER\ScreenWorkerController.h" />
     <ClInclude Include="MAIN_CONTROLLER\SCREEN_WORKER_CONTROLLER\SCREEN_RECORDER\ScreenRecorder.h" />
-    <ClInclude Include="MAIN_CONTROLLER\SYSAUDIO_WORKER_CONTROLLER\SysAudioWorkerController.h" />
-    <ClInclude Include="MAIN_CONTROLLER\SYSAUDIO_WORKER_CONTROLLER\SYSAUDIO_HANDLER\SysAudioHandler.h" />
-    <ClInclude Include="MAIN_CONTROLLER\SYSAUDIO_WORKER_CONTROLLER\SYSAUDIO_RECORDER\SysAudioRecorder.h" />
+    <ClInclude Include="TYPES\AudioRecordedData.h" />
     <ClInclude Include="TYPES\DirectXShared.h" />
     <ClInclude Include="TYPES\SharedDX11On12Texture2D.h" />
     <ClInclude Include="TYPES\SharedQueue.h" />

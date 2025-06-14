@@ -1,9 +1,9 @@
-#include "SysAudioRecorder.h"
+#include "AudioRecorder.h"
 
 #include <iostream>
 
-// Start sysaudio capturing
-void SysAudioRecorder::StartThread() {
+// Start audio capturing
+void AudioRecorder::StartThread() {
 	HRESULT hr;
 
 	// Start Audio Client for loopback audio capture
@@ -21,10 +21,12 @@ void SysAudioRecorder::StartThread() {
 		if (FAILED(hr)) break;
 
 		while (packetLength > 0) {
-			std::vector<unsigned char> vCapturedSysAudio = CaptureAudio();
-			if (!vCapturedSysAudio.empty()) {
-				spRecordedSysAudio->Push(std::move(vCapturedSysAudio));
+			std::vector<unsigned char> vCapturedAudio = CaptureAudio();
+			if (!vCapturedAudio.empty()) {
+				spRecordedAudio->Push(std::move(vCapturedAudio));
 			}
+
+			std::cout << "PacketLength: " << packetLength << std::endl;
 
 			// Check for more data immediately
 			hr = cpAudioCaptureClient->GetNextPacketSize(&packetLength);
@@ -36,7 +38,7 @@ void SysAudioRecorder::StartThread() {
 }
 
 // Capture audio via IAudioCaptureClient and return a vector with recorded audio
-std::vector<unsigned char> SysAudioRecorder::CaptureAudio() {
+std::vector<unsigned char> AudioRecorder::CaptureAudio() {
 	HRESULT hr;
 
 	// Vars that we need for buffer creation
@@ -44,7 +46,7 @@ std::vector<unsigned char> SysAudioRecorder::CaptureAudio() {
 	UINT32 uiNumFrames = 0;
 	DWORD dwFlags = 0;
 
-	// Get buffer of recorded system audio
+	// Get buffer of recorded audio
 	hr = cpAudioCaptureClient.Get()->GetBuffer(
 		&pData,
 		&uiNumFrames,
@@ -59,7 +61,7 @@ std::vector<unsigned char> SysAudioRecorder::CaptureAudio() {
 
 	// Copy data into a vector
 	std::vector<unsigned char> vBuffer(pData, pData + (uiNumFrames * pWaveFormat->nBlockAlign));
-	
+
 	// Release a buffer
 	cpAudioCaptureClient.Get()->ReleaseBuffer(uiNumFrames);
 
@@ -67,8 +69,8 @@ std::vector<unsigned char> SysAudioRecorder::CaptureAudio() {
 	return vBuffer;
 }
 
-// End sysaudio capturing
-void SysAudioRecorder::EndRequest() {
+// End audio capturing
+void AudioRecorder::EndRequest() {
 	// Temporary no implementation
 	return;
 }

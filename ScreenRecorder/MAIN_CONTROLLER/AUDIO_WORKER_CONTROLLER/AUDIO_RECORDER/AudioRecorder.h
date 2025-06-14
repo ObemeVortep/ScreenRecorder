@@ -1,9 +1,8 @@
-#ifndef SYSAUDIO_RECORDER_H
-#define SYSAUDIO_RECORDER_H
+#ifndef AUDIO_RECORDER_H
+#define AUDIO_RECORDER_H
 
 #include "INTERFACES/IWorker.h"
-
-#include "TYPES/SharedQueue.h"
+#include "TYPES/AudioRecordedData.h"
 #include <memory>
 
 #include <mmdeviceapi.h>
@@ -13,12 +12,12 @@
 #include <wrl/client.h>
 using Microsoft::WRL::ComPtr;
 
-class SysAudioRecorder : public IWorker {
+class AudioRecorder : public IWorker {
 public:
 	// Constructor
-	SysAudioRecorder(std::shared_ptr<SharedQueue<std::vector<unsigned char>>> spRecordedSysAudio);
+	AudioRecorder(std::shared_ptr<AudioRecordedData<std::vector<unsigned char>>> spRecordedAudio, EDataFlow eType);
 	// Destructor
-	~SysAudioRecorder();
+	~AudioRecorder();
 
 	// Initialize SysAudioRecorder instances
 	int Initialize() override;
@@ -34,24 +33,30 @@ private:
 	std::vector<unsigned char> CaptureAudio();
 
 private:
-	// Connectors between RECORDER -> HANDLER
-	// SysAudioRecorder -> SysAudioHandler
-	std::shared_ptr<SharedQueue<std::vector<unsigned char>>> spRecordedSysAudio;
+	// Type of device, which captures audio
+	// eRender -> system audio
+	// eCapture -> microphone
+	// It changes initialization, but the whole logic is the same
+	EDataFlow deviceType;
 
 private:
-	// For system audio capture
-	// Format of system audio
+	// Connectors between RECORDER -> HANDLER
+	// AudioRecorder -> AudioHandler
+	std::shared_ptr<AudioRecordedData<std::vector<unsigned char>>> spRecordedAudio;
+
+private:
+	// For audio capture
+	// Format of audio
 	WAVEFORMATEX* pWaveFormat;
 
-	// The main device from which we record system sound
-	ComPtr<IMMDevice> cpRenderDevice;
+	// The main device from which we record sound
+	ComPtr<IMMDevice> cpDevice;
 
 	// Audio client that manages audio session (starts and ends)
 	ComPtr<IAudioClient> cpAudioClient;
 
-	// AudioCaptureClient that captures system audio via Loopback 
+	// AudioCaptureClient that captures audio via Loopback 
 	ComPtr<IAudioCaptureClient> cpAudioCaptureClient;
 };
 
-
-#endif // SYSAUDIO_RECORDER_H
+#endif // AUDIO_RECORDER_H

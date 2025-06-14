@@ -3,14 +3,16 @@
 
 #include "INTERFACES/IWorker.h"
 
-class SysAudioHandler : public IWorker {
+#include "TYPES/AudioRecordedData.h"
+
+class AudioHandler : public IWorker {
 public:
 	// Constructor
-	SysAudioHandler();
+	AudioHandler();
 	// Destructor
-	~SysAudioHandler();
+	~AudioHandler();
 
-	// Initialize SysAudioHandler instances
+	// Initialize AudioHandler instances
 	int Initialize() override;
 
 	// Start sysaudio capturing

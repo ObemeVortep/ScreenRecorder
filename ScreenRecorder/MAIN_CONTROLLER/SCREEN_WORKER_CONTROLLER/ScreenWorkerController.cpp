@@ -15,7 +15,11 @@ ScreenWorkerController::~ScreenWorkerController() {
 
 // Initialize all workers threads and return std::shared_ptr<SharedQueue<std::vector<unsigned char>>> for VideoPipelineBuffer
 std::shared_ptr<SharedQueue<std::vector<unsigned char>>> ScreenWorkerController::Initialize() {
-	if (InitializeWorkers(&screenRecorder, &frameHandler) != 0) {
+	// RECORDERS MUST BE INITIALIZED BEFORE HANDLERS
+	if (screenRecorder.Initialize() != 0) {
+		return NULL;
+	}
+	if (frameHandler.Initialize() != 0) {
 		return NULL;
 	}
 
@@ -24,5 +28,7 @@ std::shared_ptr<SharedQueue<std::vector<unsigned char>>> ScreenWorkerController:
 
 // Start all worker threads
 void ScreenWorkerController::StartThreads() {
-	StartWorkers(&screenRecorder, &frameHandler, screenRecorderThread, frameHandlerThread);
+	// HANDLERS MUST BE STARTED BEFORE RECORDERS
+	frameHandlerThread = std::jthread(&IWorker::StartThread, &frameHandler);
+	screenRecorderThread = std::jthread(&IWorker::StartThread, &screenRecorder);
 }

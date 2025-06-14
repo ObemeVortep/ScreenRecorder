@@ -24,7 +24,7 @@ VideoPipelineBuffer MainController::Initialize() {
 		uiControllersInited += 0x01;
 	}
 
-	// SysAudioWorkerController works with videoPipelineBuffer.spProcessedSysAudio
+	// AudioWorkerController works with videoPipelineBuffer.spProcessedSysAudio
 	videoPipelineBuffer.spProcessedSysAudio = sysAudioWorkerController.Initialize();
 	if (videoPipelineBuffer.spProcessedSysAudio) {
 		// If sysAudioWorkerController successfully inited: add 0x01 to uiControllersInited
