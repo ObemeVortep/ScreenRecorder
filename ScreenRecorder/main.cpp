@@ -2,16 +2,25 @@
 
 #include <iostream>
 
-int main() {
+int main() { 
+	HRESULT hr;
+
 	// Essential for accurate sleep times 
 	timeBeginPeriod(1);
+
+	// Essential for WASAPI
+	hr = CoInitializeEx(NULL, COINIT_MULTITHREADED);
+	if (FAILED(hr)) {
+		// Failed to initialize COM in multithreaded environment
+		return -1;
+	}
 
 	// It optimizes DirectX usage for ScreenRecorder and FrameHandler
 	// This allows us to shoot and encode video completely without using the CPU
 	DirectXManager directXManager;
 	if (directXManager.Initialize() != 0) {
 		// Failed to initialize DirectX11 / DirectX12
-		return -1;
+		return -2;
 	}
 
 	// mainController manages all data collection threads for video creation
@@ -21,14 +30,14 @@ int main() {
 	VideoPipelineBuffer videoPipelineBuffer = mainController.Initialize();
 	if (videoPipelineBuffer.GetInitedControllers() == 0) {
 		// Failed to initialize at least one recorder<->handler pair in mainController
-		return -2;
+		return -3;
 	}
 
 	// VideoCreator creates video from videoPipelineBuffer data in real time
 	VideoCreator videoCreator(videoPipelineBuffer);
 	if (videoCreator.Initialize() != 0) {
 		// Failed to initialize VideoCreator
-		return -3;
+		return -4;
 	}
 
 	// Start video creation before capturing threads
@@ -38,9 +47,14 @@ int main() {
 	// Start all screen recording streams only after all dependencies have been initialized
 	mainController.StartThreads();
 
-	std::cout << "Threads started" << std::endl;
+	std::cout << "Threads started: " << videoPipelineBuffer.GetInitedControllers() << std::endl;
 
 	while (true) {
 		std::this_thread::sleep_for(std::chrono::seconds(1000));
 	}
+
+	// Is it really necessary?
+	CoUninitialize();
+
+	return 0;
 }

@@ -79,6 +79,18 @@
     <Filter Include="Файлы заголовков\MAIN_CONTROLLER\SYSAUDIO_WORKER_CONTROLLER">
       <UniqueIdentifier>{34e8116f-4213-4455-a1a5-0035dfb94754}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\MAIN_CONTROLLER\SYSAUDIO_WORKER_CONTROLLER\SYSAUDIO_RECORDER">
+      <UniqueIdentifier>{686aafa3-5b89-4247-aea0-33d16f1cfcda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\MAIN_CONTROLLER\SYSAUDIO_WORKER_CONTROLLER\SYSAUDIO_HANDLER">
+      <UniqueIdentifier>{52ac4653-0325-406d-a955-204e843079cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\MAIN_CONTROLLER\SYSAUDIO_WORKER_CONTROLLER\SYSAUDIO_HANDLER">
+      <UniqueIdentifier>{d615113c-76a3-4753-b110-6036ae8df36a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\MAIN_CONTROLLER\SYSAUDIO_WORKER_CONTROLLER\SYSAUDIO_RECORDER">
+      <UniqueIdentifier>{f7a8a259-e16c-4595-9c2a-1366fea3fd3e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="VIDEO_CREATOR\VideoCreator.cpp">
@@ -122,6 +134,21 @@
     </ClCompile>
     <ClCompile Include="MAIN_CONTROLLER\SCREEN_WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS\H264_CONVERTER\H264ConverterInitialization.cpp">
       <Filter>Исходные файлы\MAIN_CONTROLLER\SCREEN_WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS\H264_CONVERTER</Filter>
+    </ClCompile>
+    <ClCompile Include="MAIN_CONTROLLER\SYSAUDIO_WORKER_CONTROLLER\SysAudioWorkerController.cpp">
+      <Filter>Исходные файлы\MAIN_CONTROLLER\SYSAUDIO_WORKER_CONTROLLER</Filter>
+    </ClCompile>
+    <ClCompile Include="MAIN_CONTROLLER\SYSAUDIO_WORKER_CONTROLLER\SYSAUDIO_RECORDER\SysAudioRecorder.cpp">
+      <Filter>Исходные файлы\MAIN_CONTROLLER\SYSAUDIO_WORKER_CONTROLLER\SYSAUDIO_RECORDER</Filter>
+    </ClCompile>
+    <ClCompile Include="MAIN_CONTROLLER\SYSAUDIO_WORKER_CONTROLLER\SYSAUDIO_HANDLER\SysAudioHandler.cpp">
+      <Filter>Исходные файлы\MAIN_CONTROLLER\SYSAUDIO_WORKER_CONTROLLER\SYSAUDIO_HANDLER</Filter>
+    </ClCompile>
+    <ClCompile Include="MAIN_CONTROLLER\SYSAUDIO_WORKER_CONTROLLER\SYSAUDIO_RECORDER\SysAudioCapture.cpp">
+      <Filter>Исходные файлы\MAIN_CONTROLLER\SYSAUDIO_WORKER_CONTROLLER\SYSAUDIO_RECORDER</Filter>
+    </ClCompile>
+    <ClCompile Include="MAIN_CONTROLLER\SYSAUDIO_WORKER_CONTROLLER\SYSAUDIO_HANDLER\SysAudioProcessing.cpp">
+      <Filter>Исходные файлы\MAIN_CONTROLLER\SYSAUDIO_WORKER_CONTROLLER\SYSAUDIO_HANDLER</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +202,15 @@
     </ClInclude>
     <ClInclude Include="MAIN_CONTROLLER\SCREEN_WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS\H264_CONVERTER\H264Concepts.h">
       <Filter>Файлы заголовков\MAIN_CONTROLLER\SCREEN_WORKER_CONTROLLER\FRAME_HANDLER\CONVERTERS\H264_CONVERTER</Filter>
+    </ClInclude>
+    <ClInclude Include="MAIN_CONTROLLER\SYSAUDIO_WORKER_CONTROLLER\SysAudioWorkerController.h">
+      <Filter>Файлы заголовков\MAIN_CONTROLLER\SYSAUDIO_WORKER_CONTROLLER</Filter>
+    </ClInclude>
+    <ClInclude Include="MAIN_CONTROLLER\SYSAUDIO_WORKER_CONTROLLER\SYSAUDIO_RECORDER\SysAudioRecorder.h">
+      <Filter>Файлы заголовков\MAIN_CONTROLLER\SYSAUDIO_WORKER_CONTROLLER\SYSAUDIO_RECORDER</Filter>
+    </ClInclude>
+    <ClInclude Include="MAIN_CONTROLLER\SYSAUDIO_WORKER_CONTROLLER\SYSAUDIO_HANDLER\SysAudioHandler.h">
+      <Filter>Файлы заголовков\MAIN_CONTROLLER\SYSAUDIO_WORKER_CONTROLLER\SYSAUDIO_HANDLER</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

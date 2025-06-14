@@ -21,6 +21,9 @@ public:
 	// ScreenWorkerController works with videoPipelineBuffer.spProcessedFrames
 	std::shared_ptr<SharedQueue<std::vector<unsigned char>>> spProcessedFrames;
 
+	// SysAudioWorkerController works with videoPipelineBuffer.spProcessedSysAudio
+	std::shared_ptr<SharedQueue<std::vector<unsigned char>>> spProcessedSysAudio;
+
 private:
 	uint32_t uiInitedControllers;
 };

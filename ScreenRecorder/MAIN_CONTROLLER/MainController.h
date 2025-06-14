@@ -2,6 +2,7 @@
 #define MAIN_CONTROLLER_H
 
 #include "SCREEN_WORKER_CONTROLLER/ScreenWorkerController.h"
+#include "SYSAUDIO_WORKER_CONTROLLER/SysAudioWorkerController.h"
 
 class MainController {
 public:
@@ -25,12 +26,16 @@ private:
 	// Internal state fields
 	// This bit-field means count of internal controllers that were inited
 	// 0x01: ScreenWorkerController
+	// 0x02: SysAudioWorkerController
 	uint32_t uiControllersInited;
 
 private:
 	// All worker controllers
 	// ScreenWorkerController captures screen 60 times per second and encode it into H.264 frames
 	ScreenWorkerController screenWorkerController;
+
+	// SysAudioWorkerController continuosly records audio and encode it into AAC format
+	SysAudioWorkerController sysAudioWorkerController;
 };
 
 #endif // MAIN_CONTROLLER_H

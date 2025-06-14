@@ -3,7 +3,8 @@
 // Constructor
 MainController::MainController(std::shared_ptr<DIRECTX12_SHARED> spDirectX12Shared, std::shared_ptr<DIRECTX11ON12_SHARED> spDirectX11On12Shared, std::shared_ptr<DIRECTX11_SHARED> spDirectX11Shared)
 	: uiControllersInited(0),
-		screenWorkerController(spDirectX12Shared, spDirectX11On12Shared, spDirectX11Shared)
+		screenWorkerController(spDirectX12Shared, spDirectX11On12Shared, spDirectX11Shared),
+	sysAudioWorkerController()
 			{ }
 
 // Destructor
@@ -23,6 +24,13 @@ VideoPipelineBuffer MainController::Initialize() {
 		uiControllersInited += 0x01;
 	}
 
+	// SysAudioWorkerController works with videoPipelineBuffer.spProcessedSysAudio
+	videoPipelineBuffer.spProcessedSysAudio = sysAudioWorkerController.Initialize();
+	if (videoPipelineBuffer.spProcessedSysAudio) {
+		// If sysAudioWorkerController successfully inited: add 0x01 to uiControllersInited
+		uiControllersInited += 0x02;
+	}
+
 	videoPipelineBuffer.SetInitedControllers(uiControllersInited);
 	return videoPipelineBuffer;
 }
@@ -33,6 +41,11 @@ void MainController::StartThreads() {
 	// 0x01: screenWorkerController
 	if (uiControllersInited & 0x01) {
 		StartWorkerController(&screenWorkerController);
+	}
+
+	// 0x02: sysAudioWorkerController
+	if (uiControllersInited & 0x02) {
+		StartWorkerController(&sysAudioWorkerController);
 	}
 }
 
