@@ -21,8 +21,6 @@ public:
 	// End sysaudio capturing
 	void EndRequest() override;
 
-private:
-
 };
 
 #endif // SYSAUDIO_HANDLER_H

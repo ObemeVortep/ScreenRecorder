@@ -209,11 +209,11 @@
     <ClInclude Include="TYPES\AudioRecordedData.h">
       <Filter>Файлы заголовков\TYPES</Filter>
     </ClInclude>
-    <ClInclude Include="MAIN_CONTROLLER\AUDIO_WORKER_CONTROLLER\AudioWorkerController.h">
-      <Filter>Файлы заголовков\MAIN_CONTROLLER</Filter>
-    </ClInclude>
     <ClInclude Include="MAIN_CONTROLLER\AUDIO_WORKER_CONTROLLER\AUDIO_RECORDER\AudioRecorder.h">
       <Filter>Файлы заголовков\MAIN_CONTROLLER\AUDIO_WORKER_CONTROLLER\AUDIO_RECORDER</Filter>
+    </ClInclude>
+    <ClInclude Include="MAIN_CONTROLLER\AUDIO_WORKER_CONTROLLER\AudioWorkerController.h">
+      <Filter>Файлы заголовков\MAIN_CONTROLLER\AUDIO_WORKER_CONTROLLER</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

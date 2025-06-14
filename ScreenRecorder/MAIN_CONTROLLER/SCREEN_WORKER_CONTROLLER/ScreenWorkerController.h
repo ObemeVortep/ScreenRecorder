@@ -32,6 +32,7 @@ private:
 	// Connectors between HANDLER -> VIDEO_CREATOR
 	// FrameHandler -> VideoCreator
 	std::shared_ptr<SharedQueue<std::vector<unsigned char>>> spProcessedFrames;
+
 private:
 	// Recorder instances with their thread handles
 	ScreenRecorder screenRecorder;
@@ -41,6 +42,5 @@ private:
 	FrameHandler frameHandler;
 	std::jthread frameHandlerThread;
 };
-
 
 #endif // _SCREEN_WORKER_CONTROLLER_H

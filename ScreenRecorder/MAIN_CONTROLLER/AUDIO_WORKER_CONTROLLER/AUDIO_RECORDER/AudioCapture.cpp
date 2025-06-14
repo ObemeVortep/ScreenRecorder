@@ -1,7 +1,5 @@
 #include "AudioRecorder.h"
 
-#include <iostream>
-
 // Start audio capturing
 void AudioRecorder::StartThread() {
 	HRESULT hr;
@@ -25,8 +23,6 @@ void AudioRecorder::StartThread() {
 			if (!vCapturedAudio.empty()) {
 				spRecordedAudio->Push(std::move(vCapturedAudio));
 			}
-
-			std::cout << "PacketLength: " << packetLength << std::endl;
 
 			// Check for more data immediately
 			hr = cpAudioCaptureClient->GetNextPacketSize(&packetLength);
@@ -65,7 +61,7 @@ std::vector<unsigned char> AudioRecorder::CaptureAudio() {
 	// Release a buffer
 	cpAudioCaptureClient.Get()->ReleaseBuffer(uiNumFrames);
 
-	// return a vector
+	// Return a vector
 	return vBuffer;
 }
 
