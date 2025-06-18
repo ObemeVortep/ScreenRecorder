@@ -14,7 +14,7 @@
 
 // For encode audio stream in AAC
 #include "fdk-aac/aacenc_lib.h"
-#pragma comment(lib, "MAIN_CONTROLLER/AUDIO_WORKER_CONTROLLER/AUDIO_HANDLER/libsamplerate/samplerate.lib")
+#pragma comment(lib, "MAIN_CONTROLLER/AUDIO_WORKER_CONTROLLER/AUDIO_HANDLER/fdk-aac/fdk-aac.lib")
 
 
 // Struct that defines, what converts do we need
@@ -45,20 +45,24 @@ public:
 
 private:
 	// Functions used during initialization
-	// Check if audio stream needs stereo-to-mono convertation
-	void IsMonoConvNeeded(uint16_t uiChannels, bool* isMonoConvNeeded);
-
 	// Check if audio stream needs pcm-to-float convertation
 	// Returns false if audio format is neither PCM nor FLOAT format
 	bool IsPcmToFloatConvNeeded(WAVEFORMATEX* pFormat, bool* isPcmToFloatConvNeeded);
+	
+	// Check if audio stream needs stereo-to-mono convertation
+	void IsMonoConvNeeded(uint16_t uiChannels, bool* isMonoConvNeeded);
 
 	// Check if audio stream needs resampling
 	void IsResamplingNeeded(uint32_t uiSampleRate, bool* isResamplingNeeded);
 
 	// Initialize sample rate converter
-	int InitializeSampleConverter();
+	int InitializeSampleRateConverter();
+
+	// Initialize AAC encoder
+	int InitializeAACEncoder();
+
 private:
-	// Functions that convert an audio stream. 
+	// Functions that convert, mix and encode an audio stream
 	// By default, convertation to a 48 kHz float mono track is set
 	std::vector<float> ConvertAudioToDefault(std::vector<unsigned char>& vOrigAudio, NEEDED_CONVERTS* pNeededConverts, WAVEFORMATEX* pFormat);
 
@@ -71,9 +75,11 @@ private:
 	// Resample audio to 48 kHz and return vector with new resampled audio
 	inline std::vector<float> ResampleAudio(std::vector<unsigned char>& vAudio, WAVEFORMATEX* pFormat);
 
-private:
-	// Mix 2 audio (vectors must be same size and have float format)
-	std::vector<float> Mix2Audios(const std::vector<float>& vFirstAudio, const std::vector<float>& vSecondAudio);
+	// Mix 2 audio (vectors must be same size and have float format) and make from them 16bit PCM format
+	std::vector<INT16> Mix2Audios(const std::vector<float>& vFirstAudio, const std::vector<float>& vSecondAudio);
+
+	// Encode 16bit PCM audio stream in AAC format
+	std::vector<unsigned char> EncodeToAAC(std::vector<INT16>& vAudio);
 
 private:
 	// Connectors between RECORDER -> HANDLER
@@ -95,8 +101,21 @@ private:
 	NEEDED_CONVERTS micConverts;
 
 private:
+	// Instances and fields that we use for sample rate converting
 	// Converter from libsamplerate, that we use for resampling audio stream to 48 kHz
-	SRC_STATE* pConverter;
+	SRC_STATE* pSampleRateConverter;
+
+private:
+	// Instances and fields that we use for AAC encoding
+	// AAC encoder
+	HANDLE_AACENCODER hAacEncoder;
+
+	// Description of input buffer
+	std::shared_ptr<AACENC_BufDesc> spInBufDesc;
+
+	// Description of output buffer
+	std::shared_ptr<AACENC_BufDesc> spOutBufDesc;
+
 };
 
 #endif // AUDIO_HANDLER_H

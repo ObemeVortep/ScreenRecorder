@@ -41,7 +41,7 @@ inline std::vector<float> AudioHandler::ResampleAudio(std::vector<unsigned char>
 	srcData.src_ratio = ratio;
 
 	// Call resample function
-	if (src_process(pConverter, &srcData) != 0) {
+	if (src_process(pSampleRateConverter, &srcData) != 0) {
 		// src_process ended with error
 		return std::vector<float>();
 	}
