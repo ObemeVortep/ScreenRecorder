@@ -150,6 +150,9 @@
     <ClCompile Include="MAIN_CONTROLLER\AUDIO_WORKER_CONTROLLER\AUDIO_RECORDER\AudioCapture.cpp">
       <Filter>Исходные файлы\MAIN_CONTROLLER\AUDIO_WORKER_CONTROLLER\AUDIO_RECORDER</Filter>
     </ClCompile>
+    <ClCompile Include="MAIN_CONTROLLER\AUDIO_WORKER_CONTROLLER\AUDIO_HANDLER\AudioConvertion.cpp">
+      <Filter>Исходные файлы\MAIN_CONTROLLER\AUDIO_WORKER_CONTROLLER\AUDIO_HANDLER</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="INTERFACES\IWorker.h">

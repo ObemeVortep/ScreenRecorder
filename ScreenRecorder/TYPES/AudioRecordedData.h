@@ -8,19 +8,19 @@ template <class T>
 class AudioRecordedData : public SharedQueue<T> {
 public:
 	// Constructor
-	AudioRecordedData() : audioFormat(NULL) { }
+	AudioRecordedData() : pAudioFormat(nullptr) { }
 
 	// Set audio format
-	inline void SetAudioFormat(WAVEFORMATEX* pAudioFormat) {
-		std::memcpy(&audioFormat, pAudioFormat, sizeof(WAVEFORMATEX));
+	inline void SetAudioFormat(WAVEFORMATEX* pAudioFormatOrig) {
+		pAudioFormat = pAudioFormatOrig;
 	}
 
 	// Get audio format
-	inline WAVEFORMATEX GetAudioFormat() {
-		return audioFormat;
+	inline WAVEFORMATEX* GetAudioFormat() {
+		return pAudioFormat;
 	}
 private:
-	WAVEFORMATEX audioFormat;
+	WAVEFORMATEX* pAudioFormat;
 };
 
 #endif // AUDIO_RECORDED_DATA_H

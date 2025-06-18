@@ -22,6 +22,7 @@
     <ClCompile Include="DIRECTX_MANAGER\DirectXManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MAIN_CONTROLLER\AUDIO_WORKER_CONTROLLER\AudioWorkerController.cpp" />
+    <ClCompile Include="MAIN_CONTROLLER\AUDIO_WORKER_CONTROLLER\AUDIO_HANDLER\AudioConvertion.cpp" />
     <ClCompile Include="MAIN_CONTROLLER\AUDIO_WORKER_CONTROLLER\AUDIO_HANDLER\AudioHandler.cpp" />
     <ClCompile Include="MAIN_CONTROLLER\AUDIO_WORKER_CONTROLLER\AUDIO_HANDLER\AudioProcessing.cpp" />
     <ClCompile Include="MAIN_CONTROLLER\AUDIO_WORKER_CONTROLLER\AUDIO_RECORDER\AudioCapture.cpp" />
