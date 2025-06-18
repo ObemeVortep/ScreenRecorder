@@ -5,12 +5,17 @@
 
 #include "TYPES/AudioRecordedData.h"
 
+// We need 48 kHz discretization of audio stream
+#define SAMPLE_RATE			48000
+
 // For resampling audio stream
 #include "libsamplerate/samplerate.h"
-// We need 48KHz discretization of audio stream
-#define SAMPLE_RATE			48000
-// Lib for audio streams resampling
-#pragma comment(lib, "C:/JOB_SEARCH/PET_PROJECTS/ScreenRecorder/ScreenRecorder/MAIN_CONTROLLER/AUDIO_WORKER_CONTROLLER/AUDIO_HANDLER/libsamplerate/samplerate.lib")
+#pragma comment(lib, "MAIN_CONTROLLER/AUDIO_WORKER_CONTROLLER/AUDIO_HANDLER/libsamplerate/samplerate.lib")
+
+// For encode audio stream in AAC
+#include "fdk-aac/aacenc_lib.h"
+#pragma comment(lib, "MAIN_CONTROLLER/AUDIO_WORKER_CONTROLLER/AUDIO_HANDLER/libsamplerate/samplerate.lib")
+
 
 // Struct that defines, what converts do we need
 typedef struct _NEEDED_CONVERTS {
