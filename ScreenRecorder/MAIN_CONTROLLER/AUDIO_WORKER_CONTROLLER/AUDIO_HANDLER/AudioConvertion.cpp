@@ -10,8 +10,8 @@ inline void AudioHandler::ConvertPcmToFloat(std::vector<unsigned char>& vAudio) 
 inline void AudioHandler::ConvertStereoToMono(std::vector<unsigned char>& vAudio) {
 	// Convert and save mono track into vAudio
 	float* pSamples = reinterpret_cast<float*>(vAudio.data());
-	uint32_t uiSamples = vAudio.size() / (2 * sizeof(float));
-	for (uint32_t i = 0; i < uiSamples; i++) {
+	size_t uiSamples = vAudio.size() / (2 * sizeof(float));
+	for (size_t i = 0; i < uiSamples; i++) {
 		pSamples[i] = (pSamples[i * 2] + pSamples[(i * 2) + 1]) / 2;
 	}
 
@@ -23,7 +23,7 @@ inline void AudioHandler::ConvertStereoToMono(std::vector<unsigned char>& vAudio
 inline std::vector<float> AudioHandler::ResampleAudio(std::vector<unsigned char>& vAudio, WAVEFORMATEX* pFormat) {
 	// Create a vector with pre-defined count of samples
 	float ratio = static_cast<float>(SAMPLE_RATE) / static_cast<float>(pFormat->nSamplesPerSec);
-	DWORD oldSamplesCount = vAudio.size() / sizeof(float);
+	DWORD oldSamplesCount = static_cast<DWORD>(vAudio.size() / sizeof(float));
 	DWORD newSamplesCount = static_cast<DWORD>(oldSamplesCount * ratio);
 	std::vector<float> vResampledAudio(newSamplesCount);
 
