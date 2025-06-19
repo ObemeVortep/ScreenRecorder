@@ -136,6 +136,12 @@ int AudioHandler::InitializeAACEncoder() {
 		// Failed to set channel mode
 		return -2;
 	}
+	// 5. Set granule length - SAMPLE_RATE / 100 samples per frame (because WASAPI captures audio every 10ms)
+	err = aacEncoder_SetParam(hAacEncoder, AACENC_GRANULE_LENGTH, SAMPLE_RATE / 100);
+	if (err != AACENC_OK) {
+		// Failed to set granule length
+		return -2;
+	}
 
 	/* Step 3: initialize encoder with setted parameters */
 	// Call the function with NULL parameters to initialize the encoder

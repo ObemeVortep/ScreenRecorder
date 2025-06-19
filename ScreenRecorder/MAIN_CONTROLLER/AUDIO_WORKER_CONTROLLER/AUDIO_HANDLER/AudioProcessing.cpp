@@ -11,7 +11,7 @@ void AudioHandler::StartThread() {
 	// 1. Wait for system and mic audio to be captured
 	// 2. Convert both streams to a unified format (sample rate, channels, float)
 	// 3. Mix system and mic audio into a single stream
-	// 4. Encode mixed audio to AAC (TODO)
+	// 4. Encode mixed audio to AAC
 	// 5. Push final audio to VideoCreator for muxing
 	while (true) {
 		/* Step 1: wait for sys and mic audio to be captured */
@@ -113,11 +113,11 @@ std::vector<unsigned char> AudioHandler::EncodeToAAC(std::vector<INT16>& vAudio)
 	// 3. Declare output arguments
 	AACENC_OutArgs outArgs = { 0 };
 
-	/* Step 3: call encode function with */
+	/* Step 3: call encode function */
 	AACENC_ERROR err;
 	err = aacEncEncode(hAacEncoder, &inBufDesc, &outBufDesc, &inArgs, &outArgs);
 	if (err != AACENC_OK) {
-		// Error to encode data
+		// Failed to encode data
 		return std::vector<unsigned char>();
 	}
 
